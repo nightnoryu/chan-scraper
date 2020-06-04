@@ -65,10 +65,11 @@ response = requests.get(api_url)
 # Parse it down n' hard
 res_json = response.json()
 posts = res_json['threads'][0]['posts']
+amount = count_files(posts, mode)
 
 
 # Ask user
-print('Files will be saved in the current directory.')
+print('{} files will be saved in the current directory.'.format(amount))
 choice = input('Proceed (Y/n)? ')
 if not (choice == 'y' or choice == 'Y' or choice == ''):
 	print('As you wish...')
