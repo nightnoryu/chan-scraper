@@ -11,6 +11,26 @@ def get_api_url(url):
     return api_url + '.json'
 
 
+def count_files(posts, mode='all'):
+    n = 0
+    for post in posts:
+        for fname in post['fnames']:
+            ext = fname['name'].split('.')[-1]
+            if mode == 'images':
+                if is_image(ext):
+                    n += 1
+                else:
+                    continue
+            elif mode == 'videos':
+                if is_video(ext):
+                    n += 1
+                else:
+                    continue
+            elif mode == 'all':
+                n += 1
+    return n
+
+
 # Parse arguments
 parser = argparse.ArgumentParser(
 	description='''Downloads all files, images or videos from the thread on 2ch.hk.''')
