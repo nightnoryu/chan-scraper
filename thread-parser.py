@@ -7,42 +7,42 @@ import requests
 
 def get_api_url(url):
 	'''Returns an API url (html -> json)'''
-    array = url.split('.')
-    api_url = '.'.join(array[:-1])
-    return api_url + '.json'
+	array = url.split('.')
+	api_url = '.'.join(array[:-1])
+	return api_url + '.json'
 
 
 def get_extension(name):
-    return name.split('.')[-1];
+	return name.split('.')[-1];
 
 
 def is_image(ext):
-    return (ext == 'jpg' or ext == 'jpeg' or
-            ext == 'png' or ext =='gif')
+	return (ext == 'jpg' or ext == 'jpeg' or
+		ext == 'png' or ext =='gif')
 
 
 def is_video(ext):
-    return ext == 'webm' or ext == 'mp4'
+	return ext == 'webm' or ext == 'mp4'
 
 
 def count_files(posts, mode='all'):
-    n = 0
-    for post in posts:
-        for fname in post['fnames']:
-            ext = get_extension(fname)
-            if mode == 'images':
-                if is_image(ext):
-                    n += 1
-                else:
-                    continue
-            elif mode == 'videos':
-                if is_video(ext):
-                    n += 1
-                else:
-                    continue
-            elif mode == 'all':
-                n += 1
-    return n
+	n = 0
+	for post in posts:
+		for fname in post['fnames']:
+			ext = get_extension(fname)
+			if mode == 'images':
+				if is_image(ext):
+					n += 1
+				else:
+					continue
+			elif mode == 'videos':
+				if is_video(ext):
+					n += 1
+				else:
+					continue
+			elif mode == 'all':
+				n += 1
+	return n
 
 
 # Parse arguments
