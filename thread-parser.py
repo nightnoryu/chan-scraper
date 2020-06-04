@@ -67,9 +67,13 @@ parser.add_argument('MODE', choices=['all', 'images', 'videos'],
 parser.add_argument('URL',
 	help='thread url')
 
+parser.add_argument('-o', metavar='DIR', default='.',
+	help='output directory (default: current)')
+
 args = parser.parse_args()
 mode = args.MODE
 url = args.URL
+directory = args.DIR
 
 
 # Get the thread's JSON
