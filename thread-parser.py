@@ -110,6 +110,7 @@ for post in posts:
 			if is_image(ext):
 				save_file(
 					BASE_URL + file['path'],
+					directory,
 					file['name'])
 				print('{}/{} - {}'.format(n, amount, file['name']))
 				n += 1
@@ -119,6 +120,7 @@ for post in posts:
 			if is_video(ext):
 				save_file(
 					BASE_URL + file['path'],
+					directory,
 					file['name'])
 				print('{}/{} - {}'.format(n, amount, file['name']))
 				n += 1
@@ -127,6 +129,7 @@ for post in posts:
 		elif mode == 'all':
 			save_file(
 				BASE_URL + file['path'],
+				directory,
 				file['name'])
 			print('{}/{} - {}'.format(n, amount, file['name']))
 			n += 1
