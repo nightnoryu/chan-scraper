@@ -26,4 +26,9 @@ mode = args.MODE
 url = args.URL
 
 
-# Download the content
+# Get the thread's JSON
+api_url = get_api_url(url)
+response = requests.get(api_url)
+# Parse it down n' hard
+res_json = response.json()
+posts = res_json['threads'][0]['posts']
