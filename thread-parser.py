@@ -29,6 +29,7 @@ def is_video(ext):
 
 
 def count_files(posts, mode='all'):
+	'''Counts all files according to the mode'''
 	n = 0
 	for post in posts:
 		for file in post['files']:
@@ -49,7 +50,7 @@ def count_files(posts, mode='all'):
 
 
 def save_file(url, name):
-	"""Save a file"""
+	'''Save a file'''
 	img_file = open(name, 'wb')
 	for chunk in requests.get(url):
 		img_file.write(chunk)
