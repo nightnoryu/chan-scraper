@@ -49,9 +49,9 @@ def count_files(posts, mode='all'):
 	return n
 
 
-def save_file(url, name):
-	'''Save a file'''
-	img_file = open(name, 'wb')
+def save_file(url, directory, name):
+	'''Save a file into the specified directory'''
+	img_file = open(os.path.join(directory, name), 'wb')
 	for chunk in requests.get(url):
 		img_file.write(chunk)
 	img_file.close()
