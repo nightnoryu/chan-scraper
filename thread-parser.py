@@ -73,7 +73,7 @@ parser.add_argument('-o', metavar='DIR', default='.',
 args = parser.parse_args()
 mode = args.MODE
 url = args.URL
-directory = os.path.abspath(args.DIR)
+directory = os.path.abspath(args.o)
 
 
 # Get the thread's JSON
