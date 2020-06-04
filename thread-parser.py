@@ -28,8 +28,8 @@ def is_video(ext):
 def count_files(posts, mode='all'):
 	n = 0
 	for post in posts:
-		for fname in post['fnames']:
-			ext = get_extension(fname)
+		for file in post['files']:
+			ext = get_extension(file['name'])
 			if mode == 'images':
 				if is_image(ext):
 					n += 1
