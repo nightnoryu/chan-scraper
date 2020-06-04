@@ -11,6 +11,15 @@ def get_api_url(url):
     return api_url + '.json'
 
 
+def is_image(ext):
+    return (ext == 'jpg' or ext == 'jpeg' or
+            ext == 'png' or ext =='gif')
+
+
+def is_video(ext):
+    return ext == 'webm' or ext == 'mp4'
+
+
 def count_files(posts, mode='all'):
     n = 0
     for post in posts:
