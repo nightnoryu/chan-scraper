@@ -108,8 +108,7 @@ for post in posts:
 		ext = get_extension(file['name'])
 		if mode == 'images':
 			if is_image(ext):
-				save_file(
-					BASE_URL + file['path'],
+				save_file(BASE_URL + file['path'],
 					directory,
 					file['name'])
 				print('{}/{} - {}'.format(n, amount, file['name']))
@@ -118,8 +117,7 @@ for post in posts:
 				continue
 		elif mode == 'videos':
 			if is_video(ext):
-				save_file(
-					BASE_URL + file['path'],
+				save_file(BASE_URL + file['path'],
 					directory,
 					file['name'])
 				print('{}/{} - {}'.format(n, amount, file['name']))
@@ -127,8 +125,7 @@ for post in posts:
 			else:
 				continue
 		elif mode == 'all':
-			save_file(
-				BASE_URL + file['path'],
+			save_file(BASE_URL + file['path'],
 				directory,
 				file['name'])
 			print('{}/{} - {}'.format(n, amount, file['name']))
