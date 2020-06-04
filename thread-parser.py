@@ -11,6 +11,10 @@ def get_api_url(url):
     return api_url + '.json'
 
 
+def get_extension(name):
+    return name.split('.')[-1];
+
+
 def is_image(ext):
     return (ext == 'jpg' or ext == 'jpeg' or
             ext == 'png' or ext =='gif')
@@ -24,7 +28,7 @@ def count_files(posts, mode='all'):
     n = 0
     for post in posts:
         for fname in post['fnames']:
-            ext = fname['name'].split('.')[-1]
+            ext = get_extension(fname)
             if mode == 'images':
                 if is_image(ext):
                     n += 1
