@@ -5,6 +5,9 @@ import sys
 import requests
 
 
+BASE_URL = 'https://2ch.hk'
+
+
 def get_api_url(url):
 	'''Returns an API url (html -> json)'''
 	array = url.split('.')
