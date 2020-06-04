@@ -75,3 +75,38 @@ choice = input('Proceed (Y/n)? ')
 if not (choice == 'y' or choice == 'Y' or choice == ''):
 	print('As you wish...')
 	sys.exit(0)
+
+
+# Actual downloading is happening here
+print('\nDownloading...')
+n = 1
+for post in posts:
+	for file in post['files']:
+		ext = get_extension(file['name'])
+		if mode == 'images':
+			if is_image(ext):
+				save_file(
+					BASE_URL + file['path'],
+					file['name']
+					)
+				print('{}/{} - {}'.format(n, amount, file['name']))
+				n += 1
+			else:
+				continue
+		elif mode == 'videos':
+			if is_video(ext):
+				save_file(
+					BASE_URL + file['path'],
+					file['name']
+					)
+				print('{}/{} - {}'.format(n, amount, file['name']))
+				n += 1
+			else:
+				continue
+		elif mode == 'all':
+			save_file(
+				BASE_URL + file['path'],
+				file['name']
+				)
+			print('{}/{} - {}'.format(n, amount, file['name']))
+			n += 1
