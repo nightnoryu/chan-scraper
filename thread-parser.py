@@ -93,6 +93,13 @@ if not (choice == 'y' or choice == 'Y' or choice == ''):
 	sys.exit(0)
 
 
+# Check the output directory
+if not os.path.isdir(directory):
+	print('\nHmm, \'{}\' directory doesn\'t seem to exist...'.format(directory))
+	print('Nevermind, I\'ll just create one.')
+	os.mkdir(directory)
+
+
 # Actual downloading is happening here
 print('\nDownloading...')
 n = 1
