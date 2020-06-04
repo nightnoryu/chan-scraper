@@ -86,7 +86,8 @@ amount = count_files(posts, mode)
 
 
 # Ask user
-print('{} files will be saved in the current directory.'.format(amount))
+print('{} files will be saved in the \'{}\' directory.'.format(amount,
+	directory))
 choice = input('Proceed (Y/n)? ')
 if not (choice == 'y' or choice == 'Y' or choice == ''):
 	print('As you wish...')
