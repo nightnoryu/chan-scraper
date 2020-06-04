@@ -112,7 +112,7 @@ for post in posts:
 				save_file(BASE_URL + file['path'],
 					directory,
 					file['name'])
-				print('{}/{} - {}'.format(n, amount, file['name']))
+				print('{:>3}/{} - {}'.format(n, amount, file['name']))
 				n += 1
 			else:
 				continue
@@ -121,7 +121,7 @@ for post in posts:
 				save_file(BASE_URL + file['path'],
 					directory,
 					file['name'])
-				print('{}/{} - {}'.format(n, amount, file['name']))
+				print('{:>3}/{} - {}'.format(n, amount, file['name']))
 				n += 1
 			else:
 				continue
@@ -129,5 +129,5 @@ for post in posts:
 			save_file(BASE_URL + file['path'],
 				directory,
 				file['name'])
-			print('{}/{} - {}'.format(n, amount, file['name']))
+			print('{:>3}/{} - {}'.format(n, amount, file['name']))
 			n += 1
