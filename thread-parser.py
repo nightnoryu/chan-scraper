@@ -45,6 +45,14 @@ def count_files(posts, mode='all'):
 	return n
 
 
+def save_file(url, name):
+	"""Save a file"""
+	img_file = open(name, 'wb')
+	for chunk in requests.get(url):
+		img_file.write(chunk)
+	img_file.close()
+
+
 # Parse arguments
 parser = argparse.ArgumentParser(
 	description='''Downloads all files, images or videos from the thread on 2ch.hk.''')
