@@ -4,6 +4,13 @@ import os
 import requests
 
 
+def get_api_url(url):
+	'''Returns an API url (html -> json)'''
+    array = url.split('.')
+    api_url = '.'.join(array[:-1])
+    return api_url + '.json'
+
+
 # Parse arguments
 parser = argparse.ArgumentParser(
 	description='''Downloads all files, images or videos from the thread on 2ch.hk.''')
