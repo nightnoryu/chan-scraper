@@ -78,7 +78,13 @@ directory = os.path.abspath(args.o)
 
 # Get the thread's JSON
 api_url = get_api_url(url)
-response = requests.get(api_url)
+try:
+	response = requests.get(api_url)
+except Exception as ex:
+	# Handle all exceptions
+	print('Request error: {}'.format(ex))
+	print('Download failed, exiting.')
+	sys.exit(1)
 # Parse it down n' hard
 res_json = response.json()
 posts = res_json['threads'][0]['posts']
