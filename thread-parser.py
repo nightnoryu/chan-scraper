@@ -51,10 +51,12 @@ def count_files(posts, mode='all'):
 
 def save_file(url, directory, name):
 	'''Save a file into the specified directory'''
-	img_file = open(os.path.join(directory, name), 'wb')
-	for chunk in requests.get(url):
-		img_file.write(chunk)
-	img_file.close()
+	# Check if the image already exists
+	if not os.path.isfile(os.path.join(directory, name)):
+		img_file = open(os.path.join(directory, name), 'wb')
+		for chunk in requests.get(url):
+			img_file.write(chunk)
+		img_file.close()
 
 
 # Parse arguments
