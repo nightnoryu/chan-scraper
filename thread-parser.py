@@ -16,7 +16,7 @@ def get_api_url(url):
 
 
 def get_extension(name):
-	return name.split('.')[-1];
+	return name.split('.')[-1]
 
 
 def is_image(ext):
