@@ -34,16 +34,10 @@ def count_files(posts, mode="all"):
     for post in posts:
         for file in post["files"]:
             ext = get_extension(file["name"])
-            if mode == "images":
-                if is_image(ext):
-                    n += 1
-                else:
-                    continue
-            elif mode == "videos":
-                if is_video(ext):
-                    n += 1
-                else:
-                    continue
+            if mode == "images" and is_image(ext):
+                n += 1
+            elif mode == "videos" and is_video(ext):
+                n += 1
             elif mode == "all":
                 n += 1
     return n
