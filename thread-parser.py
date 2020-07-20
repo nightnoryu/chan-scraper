@@ -99,7 +99,7 @@ amount = count_files(posts, mode)
 print("{} files will be saved in the '{}' directory.".format(amount,
     directory))
 choice = input("Proceed (Y/n)? ")
-if not (choice == "y" or choice == "Y" or choice == ""):
+if not (choice.lower() in ["y", ""]):
     print("As you wish...")
     sys.exit(0)
 
