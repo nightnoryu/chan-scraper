@@ -80,16 +80,16 @@ url = args.URL
 directory = os.path.abspath(args.o)
 
 
-# Get the thread"s JSON
+# Get the JSON response
 api_url = get_api_url(url)
 try:
     response = requests.get(api_url)
 except Exception as ex:
-    # Handle all exceptions
+    # Handle all requests exceptions
     print("Request error: {}".format(ex))
     print("Download failed, exiting.")
     sys.exit(1)
-# Parse it down n" hard
+# Parse it down
 res_json = response.json()
 posts = res_json["threads"][0]["posts"]
 amount = count_files(posts, mode)
