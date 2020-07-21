@@ -38,7 +38,6 @@ def save_file(url, directory, name):
     full_name = os.path.join(directory, name)
     # Do not replace files
     if not os.path.isfile(full_name):
-        file = open(full_name, "wb")
-        for chunk in requests.get(url):
-            file.write(chunk)
-        file.close()
+        with open(full_name, "wb") as file:
+            for chunk in requests.get(url):
+                file.write(chunk)
