@@ -46,7 +46,7 @@ elif what_board_is_this(url) == "4chan":
 
 try:
     # Get all the files' URLs
-    file_list = dvach.get_files_urls_names(url)
+    file_list = extractor.get_files_urls_names(url)
     # Count the files
     amount = utils.count_files(file_list, mode)
 except Exception as ex:
