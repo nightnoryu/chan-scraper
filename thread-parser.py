@@ -57,7 +57,8 @@ except Exception as ex:
 
 
 # Ask user
-print("{} files will be saved in the '{}' directory.".format(amount,
+print("{} {} will be saved in the '{}' directory.".format(amount,
+    "file" if amount == 1 else "files",
     directory))
 choice = input("Proceed (Y/n)? ")
 if not (choice.lower() in ["y", ""]):
