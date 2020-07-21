@@ -66,6 +66,8 @@ directory = os.path.abspath(args.o)
 try:
     # Get all the files' URLs
     file_list = dvach.get_files_urls_names(url)
+    # Count the files
+    amount = count_files(file_list)
 except Exception as ex:
     # Handle requests exceptions
     print("Request error: {}".format(ex))
@@ -74,7 +76,8 @@ except Exception as ex:
 
 
 # Ask user
-print("Files will be saved in the '{}' directory.".format(directory))
+print("{} files will be saved in the '{}' directory.".format(amount,
+    directory))
 choice = input("Proceed (Y/n)? ")
 if not (choice.lower() in ["y", ""]):
     print("As you wish...")
