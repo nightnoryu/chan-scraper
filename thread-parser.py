@@ -2,6 +2,8 @@ import argparse
 import os
 import sys
 
+import requests
+
 import extractors.dvach as dvach
 
 
