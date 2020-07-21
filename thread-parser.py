@@ -94,6 +94,7 @@ if not os.path.isdir(directory):
 # Actual downloading is happening here
 print("\nDownloading...")
 # Posts loop
+n = 1
 for file_url, file_name in file_list:
     ext = get_extension(file_url)
     # Download images
@@ -101,13 +102,16 @@ for file_url, file_name in file_list:
         save_file(file_url,
             directory,
             file_name)
+        print("{:>3}/{} - {}".format(n, amount, file_name))
     # Download videos
     elif mode == "videos" and is_video(ext):
         save_file(file_url,
             directory,
             file_name)
+        print("{:>3}/{} - {}".format(n, amount, file_name))
     # Download whatever
     elif mode == "all":
         save_file(file_url,
             directory,
             file_name)
+        print("{:>3}/{} - {}".format(n, amount, file_name))
