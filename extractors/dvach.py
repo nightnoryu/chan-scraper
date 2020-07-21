@@ -33,18 +33,3 @@ def get_files_urls_names(url):
         for file in post["files"]:
             file_list.append((get_file_url(file), file["name"]))
     return file_list
-
-
-def count_files(posts, mode="all"):
-    """Counts all files according to the mode"""
-    n = 0
-    for post in posts:
-        for file in post["files"]:
-            ext = get_extension(file["name"])
-            if mode == "images" and is_image(ext):
-                n += 1
-            elif mode == "videos" and is_video(ext):
-                n += 1
-            elif mode == "all":
-                n += 1
-    return n
