@@ -49,8 +49,14 @@ url = args.URL
 directory = os.path.abspath(args.o)
 
 
-# Get all the files' URLs
-file_list = dvach.get_files_urls_names(url)
+try:
+    # Get all the files' URLs
+    file_list = dvach.get_files_urls_names(url)
+except Exception as ex:
+    # Handle requests exceptions
+    print("Request error: {}".format(ex))
+    print("Download failed, exiting.")
+    sys.exit(1)
 
 
 # Ask user
