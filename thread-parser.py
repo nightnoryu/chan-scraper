@@ -4,6 +4,7 @@ import sys
 
 import requests
 
+import utils
 import extractors.dvach as dvach
 
 
@@ -67,7 +68,7 @@ try:
     # Get all the files' URLs
     file_list = dvach.get_files_urls_names(url)
     # Count the files
-    amount = count_files(file_list, mode)
+    amount = utils.count_files(file_list, mode)
 except Exception as ex:
     # Handle requests exceptions
     print("Request error: {}".format(ex))
@@ -96,12 +97,12 @@ print("\nDownloading...")
 # Posts loop
 n = 1
 for file_url, file_name in file_list:
-    ext = get_extension(file_url)
+    ext = utils.get_extension(file_url)
     # Save the files according to the mode
-    if ((mode == "images" and is_image(ext)) or
-        (mode == "videos" and is_video(ext)) or
+    if ((mode == "images" and utils.is_image(ext)) or
+        (mode == "videos" and utils.is_video(ext)) or
         (mode == "all")):
-        save_file(file_url,
+        utils.save_file(file_url,
             directory,
             file_name)
         print("{:>3}/{} - {}".format(n, amount, file_name))
