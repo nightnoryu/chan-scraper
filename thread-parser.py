@@ -2,7 +2,12 @@ import argparse
 import os
 import sys
 
-import requests
+# Check if the module is installed
+try:
+    import requests
+except ImportError:
+    print("Please install requests module.")
+    sys.exit(1)
 
 import utils
 import extractors.dvach as dvach
