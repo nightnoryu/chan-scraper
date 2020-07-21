@@ -25,11 +25,9 @@ def count_files(files_list, mode="all"):
     n = 0
     for _, file_name in files_list:
         ext = get_extension(file_name)
-        if mode == "images" and is_image(ext):
-            n += 1
-        elif mode == "videos" and is_video(ext):
-            n += 1
-        elif mode == "all":
+        if ((mode == "images" and is_image(ext)) or
+            (mode == "videos" and is_video(ext)) or
+            (mode == "all")):
             n += 1
     return n
 
