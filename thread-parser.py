@@ -105,15 +105,18 @@ for file_url, file_name in file_list:
             directory,
             file_name)
         print("{:>3}/{} - {}".format(n, amount, file_name))
+        n += 1
     # Download videos
     elif mode == "videos" and is_video(ext):
         save_file(file_url,
             directory,
             file_name)
         print("{:>3}/{} - {}".format(n, amount, file_name))
+        n += 1
     # Download whatever
     elif mode == "all":
         save_file(file_url,
             directory,
             file_name)
         print("{:>3}/{} - {}".format(n, amount, file_name))
+        n += 1
