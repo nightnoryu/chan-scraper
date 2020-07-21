@@ -23,13 +23,7 @@ def get_files_urls_names(url):
     """Returns a list of tuples (file URL, file name) in thread"""
     # Get the JSON response
     api_url = get_api_url(url)
-    try:
-        response = requests.get(api_url)
-    except Exception as ex:
-        # Handle all requests exceptions
-        print("Request error: {}".format(ex))
-        print("Download failed, exiting.")
-        sys.exit(1)
+    response = requests.get(api_url)
     # Parse it down
     res_json = response.json()
     posts = res_json["threads"][0]["posts"]
