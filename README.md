@@ -1,5 +1,5 @@
 # Thread parser
-This program is capable of downloading attachments from threads on [2ch](https://2ch.hk). You can select what to download: images, videos or all files.
+This program is capable of downloading attachments from threads on [2ch](https://2ch.hk) and [4chan](https://4channel.org). You can select what to download: images, videos or all files.
 
 ## Requirements
 * Python 3
