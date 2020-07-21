@@ -19,8 +19,8 @@ def get_file_url(file):
     return BASE_URL + file["path"]
 
 
-def get_files_urls(url):
-    """Returns a list of file URLs in thread"""
+def get_files_urls_names(url):
+    """Returns a list of tuples (file URL, file name) in thread"""
     # Get the JSON response
     api_url = get_api_url(url)
     try:
@@ -34,11 +34,11 @@ def get_files_urls(url):
     res_json = response.json()
     posts = res_json["threads"][0]["posts"]
     # Create a list of URLs
-    urls = []
+    file_list = []
     for post in posts:
         for file in post["files"]:
-            urls.append(get_file_url(file))
-    return urls
+            file_list.append((get_file_url(file), file["name"]))
+    return file_list
 
 
 def count_files(posts, mode="all"):
