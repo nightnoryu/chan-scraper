@@ -37,6 +37,13 @@ url = args.URL
 directory = os.path.abspath(args.o)
 
 
+# Select the extractor
+if what_board_is_this(url) == "2ch":
+    extractor = dvach
+elif what_board_is_this(url) == "4chan":
+    extractor = fourchan
+
+
 try:
     # Get all the files' URLs
     file_list = dvach.get_files_urls_names(url)
