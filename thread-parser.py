@@ -39,6 +39,7 @@ directory = os.path.abspath(args.o)
 
 
 # Select the extractor
+extractor = None
 if what_board_is_this(url) == "2ch":
     extractor = dvach
 elif what_board_is_this(url) == "4chan":
