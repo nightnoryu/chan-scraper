@@ -28,7 +28,11 @@ def get_files_urls(url):
     # Parse it down
     res_json = response.json()
     posts = res_json["threads"][0]["posts"]
-    amount = count_files(posts, mode)
+    # Create a list of URLs
+    urls = []
+    for post in posts:
+        for file in post["files"]:
+            urls.append(file)
 
 
 def count_files(posts, mode="all"):
