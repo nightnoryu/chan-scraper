@@ -13,7 +13,8 @@ def what_board_is_this(url):
     """Returns a name of the board depending on the thread URL"""
     if url.startswith("https://2ch."):
         return "2ch"
-    elif url.startswith("https://boards.4channel.org"):
+    elif (url.startswith("https://boards.4channel.org") or
+          url.startswith("https://boards.4chan.org")):
         return "4chan"
 
 
