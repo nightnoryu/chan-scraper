@@ -56,6 +56,11 @@ except Exception as ex:
     sys.exit(1)
 
 
+# Check if there's any files
+if amount == 0:
+    print("There are no files in this thread: {}".format(url))
+    sys.exit(0)
+
 # Ask user
 print("{} {} will be saved in the '{}' directory.".format(amount,
     "file" if amount == 1 else "files",
