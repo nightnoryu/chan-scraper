@@ -6,6 +6,7 @@ import requests
 
 import utils
 import extractors.dvach as dvach
+import extractors.fourchan as fourchan
 
 
 # Parse arguments
