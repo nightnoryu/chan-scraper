@@ -20,7 +20,7 @@ def what_board_is_this(url):
 # Parse arguments
 parser = argparse.ArgumentParser(
     description="""Downloads all files, images or videos from the
-    thread on 2ch.hk.""")
+    thread on 2ch or 4chan.""")
 
 parser.add_argument("MODE", choices=["all", "images", "videos"],
     help="parse mode, e.g. what files to download")
