@@ -9,6 +9,14 @@ import extractors.dvach as dvach
 import extractors.fourchan as fourchan
 
 
+def what_board_is_this(url):
+    """Returns a name of the board depending on the thread URL"""
+    if url.startswith("https://2ch."):
+        return "2ch"
+    elif url.startswith("https://boards.4channel.org"):
+        return "4chan"
+
+
 # Parse arguments
 parser = argparse.ArgumentParser(
     description="""Downloads all files, images or videos from the
