@@ -14,6 +14,11 @@ def get_api_url(url):
     return api_url + ".json"
 
 
+def get_file_url(file):
+    """Returns a ready-to-download file URL"""
+    return BASE_URL + file["path"]
+
+
 def get_files_urls(url):
     """Returns a list of file URLs in thread"""
     # Get the JSON response
