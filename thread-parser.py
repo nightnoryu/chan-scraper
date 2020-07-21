@@ -18,6 +18,20 @@ def is_video(ext):
     return ext == "webm" or ext == "mp4"
 
 
+def count_files(files_list, mode="all"):
+    """Returns files amount according to the specified mode"""
+    n = 0
+    for _, file_name in files_list:
+        ext = get_extension(file_name)
+        if mode == "images" and is_image(ext):
+            n += 1
+        elif mode == "videos" and is_video(ext):
+            n += 1
+        elif mode == "all":
+            n += 1
+    return n
+
+
 def save_file(url, directory, name):
     """Save a file into the specified directory"""
     # Check if the image already exists
