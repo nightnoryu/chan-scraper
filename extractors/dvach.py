@@ -38,6 +38,7 @@ def get_files_urls(url):
     for post in posts:
         for file in post["files"]:
             urls.append(get_file_url(file))
+    return urls
 
 
 def count_files(posts, mode="all"):
