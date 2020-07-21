@@ -66,8 +66,9 @@ for file_url, file_name in file_list:
     if ((mode == "images" and utils.is_image(ext)) or
         (mode == "videos" and utils.is_video(ext)) or
         (mode == "all")):
-        utils.save_file(file_url,
-            directory,
-            file_name)
+        # Save the file
+        utils.save_file(file_url, directory, file_name)
+        # Log the action
         print("{:>3}/{} - {}".format(n, amount, file_name))
+        # Update counter
         n += 1

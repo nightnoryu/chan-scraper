@@ -7,6 +7,7 @@ import requests
 
 
 def get_extension(name):
+    """Returns file's extension without dot"""
     return name.split(".")[-1]
 
 
@@ -35,8 +36,9 @@ def save_file(url, directory, name):
     """Save a file into the specified directory"""
     # Check if the image already exists
     full_name = os.path.join(directory, name)
+    # Do not replace files
     if not os.path.isfile(full_name):
-        img_file = open(full_name, "wb")
+        file = open(full_name, "wb")
         for chunk in requests.get(url):
-            img_file.write(chunk)
-        img_file.close()
+            file.write(chunk)
+        file.close()
