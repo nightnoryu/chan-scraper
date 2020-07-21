@@ -69,7 +69,7 @@ try:
     # Get all the files' URLs
     file_list = dvach.get_files_urls_names(url)
     # Count the files
-    amount = count_files(file_list)
+    amount = count_files(file_list, mode)
 except Exception as ex:
     # Handle requests exceptions
     print("Request error: {}".format(ex))
