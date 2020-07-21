@@ -4,6 +4,8 @@ import sys
 
 import requests
 
+import extractors.dvach as dvach
+
 
 BASE_URL = "https://2ch.hk"
 
@@ -75,23 +77,25 @@ directory = os.path.abspath(args.o)
 
 
 # Get the JSON response
-api_url = get_api_url(url)
-try:
-    response = requests.get(api_url)
-except Exception as ex:
-    # Handle all requests exceptions
-    print("Request error: {}".format(ex))
-    print("Download failed, exiting.")
-    sys.exit(1)
-# Parse it down
-res_json = response.json()
-posts = res_json["threads"][0]["posts"]
-amount = count_files(posts, mode)
+# api_url = get_api_url(url)
+# try:
+#     response = requests.get(api_url)
+# except Exception as ex:
+#     # Handle all requests exceptions
+#     print("Request error: {}".format(ex))
+#     print("Download failed, exiting.")
+#     sys.exit(1)
+# # Parse it down
+# res_json = response.json()
+# posts = res_json["threads"][0]["posts"]
+# amount = count_files(posts, mode)
+
+# Get all the files' URLs
+file_list = dvach.get_files_urls_names(url)
 
 
 # Ask user
-print("{} files will be saved in the '{}' directory.".format(amount,
-    directory))
+print("Files will be saved in the '{}' directory.".format(directory))
 choice = input("Proceed (Y/n)? ")
 if not (choice.lower() in ["y", ""]):
     print("As you wish...")
@@ -107,30 +111,21 @@ if not os.path.isdir(directory):
 
 # Actual downloading is happening here
 print("\nDownloading...")
-n = 1
 # Posts loop
-for post in posts:
-    # Files loop
-    for file in post["files"]:
-        ext = get_extension(file["name"])
-        # Download images
-        if mode == "images" and is_image(ext):
-            save_file(BASE_URL + file["path"],
-                directory,
-                file["name"])
-            print("{:>3}/{} - {}".format(n, amount, file["name"]))
-            n += 1
-        # Download videos
-        elif mode == "videos" and is_video(ext):
-            save_file(BASE_URL + file["path"],
-                directory,
-                file["name"])
-            print("{:>3}/{} - {}".format(n, amount, file["name"]))
-            n += 1
-        # Download whatever
-        elif mode == "all":
-            save_file(BASE_URL + file["path"],
-                directory,
-                file["name"])
-            print("{:>3}/{} - {}".format(n, amount, file["name"]))
-            n += 1
+for file_url, file_name in file_list:
+    ext = get_extension(file_url)
+    # Download images
+    if mode == "images" and is_image(ext):
+        save_file(file_url,
+            directory,
+            file_name)
+    # Download videos
+    elif mode == "videos" and is_video(ext):
+        save_file(file_url,
+            directory,
+            file_name)
+    # Download whatever
+    elif mode == "all":
+        save_file(file_url,
+            directory,
+            file_name)
