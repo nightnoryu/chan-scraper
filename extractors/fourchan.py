@@ -31,6 +31,8 @@ def get_files_urls_names(url):
     # Get the JSON response
     api_url = get_thread_api_url(url)
     response = requests.get(api_url)
+    # Check response status
+    response.raise_for_status()
     # Parse it down
     res_json = response.json()
     posts = res_json["posts"]
