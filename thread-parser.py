@@ -16,11 +16,13 @@ import extractors.fourchan as fourchan
 
 def what_board_is_this(url):
     """Returns a name of the board depending on the thread URL"""
+    board = None
     if url.startswith("https://2ch."):
-        return "2ch"
+        board = "2ch"
     elif (url.startswith("https://boards.4channel.org") or
           url.startswith("https://boards.4chan.org")):
-        return "4chan"
+        board = "4chan"
+    return board
 
 
 # Parse arguments
@@ -49,6 +51,9 @@ if what_board_is_this(url) == "2ch":
     extractor = dvach
 elif what_board_is_this(url) == "4chan":
     extractor = fourchan
+else:
+    print("This URL is not supported.")
+    sys.exit(1)
 
 
 try:
