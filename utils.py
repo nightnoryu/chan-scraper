@@ -57,7 +57,7 @@ def what_board_is_this(url):
     return board
 
 
-def parse_thread(url, mode, directory):
+def parse_thread(url, mode, directory, single=False):
     """Does the job on one thread"""
     # Log current thread
     print("\nParsing '{}'".format(url))
@@ -87,9 +87,10 @@ def parse_thread(url, mode, directory):
         print("There are no files in this thread: {}".format(url))
         return
 
-    # Create a separate directory for this thread
-    number = extractor.get_thread_number(url)
-    os.mkdir(os.path.join(directory, "{}_{}".format(extractor.NAME, number)))
+    # Create a separate directory for this thread if there are many
+    if not single:
+        number = extractor.get_thread_number(url)
+        os.mkdir(os.path.join(directory, "{}_{}".format(extractor.NAME, number)))
 
     # Actual downloading is happening here
     print("Downloading...")
