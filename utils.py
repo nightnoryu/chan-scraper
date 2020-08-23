@@ -90,7 +90,10 @@ def parse_thread(url, mode, directory, single=False):
     # Create a separate directory for this thread if there are many
     if not single:
         number = extractor.get_thread_number(url)
-        os.mkdir(os.path.join(directory, "{}_{}".format(extractor.NAME, number)))
+        # Create a new directory for this thread
+        directory = os.path.join(directory,
+                                 "{}_{}".format(extractor.NAME, number))
+        os.mkdir(directory)
 
     # Actual downloading is happening here
     print("Downloading...")
