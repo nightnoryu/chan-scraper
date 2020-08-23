@@ -12,7 +12,7 @@ MEDIA_BASE_URL  = "https://i.4cdn.org/"
 def get_thread_number(url):
     """Returns thread's number"""
     # Get the JSON response
-    api_url = get_thread_api_url(url)
+    api_url = get_api_url(url)
     response = requests.get(api_url)
     # Check response status
     response.raise_for_status()
@@ -21,7 +21,7 @@ def get_thread_number(url):
     return int(res_json["posts"][0]["no"])
 
 
-def get_thread_api_url(url):
+def get_api_url(url):
     """Returns an API URL for a thread"""
     # We're grabbing only board/thread/number
     return THREAD_BASE_URL + "/".join(url.split("/")[3:6]) + ".json"
@@ -42,7 +42,7 @@ def get_files_urls_names(url):
     # Get the name of the board
     board_name = get_board_name(url)
     # Get the JSON response
-    api_url = get_thread_api_url(url)
+    api_url = get_api_url(url)
     response = requests.get(api_url)
     # Check response status
     response.raise_for_status()
