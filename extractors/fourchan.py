@@ -4,6 +4,7 @@
 import requests
 
 
+NAME = "fourchan"
 THREAD_BASE_URL = "https://a.4cdn.org/"
 MEDIA_BASE_URL  = "https://i.4cdn.org/"
 

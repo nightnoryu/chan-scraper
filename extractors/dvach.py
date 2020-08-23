@@ -4,6 +4,7 @@
 import requests
 
 
+NAME = "dvach"
 BASE_URL = "https://2ch.hk"
 
 
