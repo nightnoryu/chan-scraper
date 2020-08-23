@@ -34,5 +34,11 @@ urls = args.URLS
 directory = os.path.abspath(args.o)
 
 
+# Check input URLS
+if not len(urls):
+    print("Error: no URL provided.")
+    sys.exit(1)
+
 # Parse the thread
-# utils.parse_thread(url, mode, directory)
+for url in urls:
+    utils.parse_thread(url, mode, directory)
