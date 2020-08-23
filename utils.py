@@ -87,7 +87,9 @@ def parse_thread(url, mode, directory):
         print("There are no files in this thread: {}".format(url))
         return
 
-    # TODO separate directory with thread's number
+    # Create a separate directory for this thread
+    number = extractor.get_thread_number(url)
+    os.mkdir(os.path.join(directory, "{}_{}".format(extractor.NAME, number)))
 
     # Actual downloading is happening here
     print("Downloading...")
