@@ -60,7 +60,7 @@ def what_board_is_this(url):
 def parse_thread(url, mode, directory):
     """Does the job on one thread"""
     # Log current thread
-    print("Parsing '{}'".format(url))
+    print("\nParsing '{}'".format(url))
 
     # Select the extractor
     extractor = None
@@ -93,7 +93,7 @@ def parse_thread(url, mode, directory):
         os.mkdir(directory)
 
     # Actual downloading is happening here
-    print("\nDownloading...")
+    print("Downloading...")
     # Posts loop
     n = 1
     for file_url, file_name in file_list:
