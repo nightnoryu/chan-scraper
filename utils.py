@@ -41,3 +41,14 @@ def save_file(url, directory, name):
         with open(full_name, "wb") as file:
             for chunk in requests.get(url):
                 file.write(chunk)
+
+
+def what_board_is_this(url):
+    """Returns a name of the board depending on the thread URL"""
+    board = None
+    if url.startswith("https://2ch."):
+        board = "2ch"
+    elif (url.startswith("https://boards.4channel.org") or
+          url.startswith("https://boards.4chan.org")):
+        board = "4chan"
+    return board
