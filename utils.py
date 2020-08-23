@@ -87,10 +87,7 @@ def parse_thread(url, mode, directory):
         print("There are no files in this thread: {}".format(url))
         return
 
-    # Check the output directory
     # TODO separate directory with thread's number
-    if not os.path.isdir(directory):
-        os.mkdir(directory)
 
     # Actual downloading is happening here
     print("Downloading...")
