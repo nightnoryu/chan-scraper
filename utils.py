@@ -59,6 +59,9 @@ def what_board_is_this(url):
 
 def parse_thread(url, mode, directory):
     """Does the job on one thread"""
+    # Log current thread
+    print("Parsing '{}'".format(url))
+
     # Select the extractor
     extractor = None
     if what_board_is_this(url) == "2ch":
@@ -70,9 +73,8 @@ def parse_thread(url, mode, directory):
         return
 
     try:
-        # Get all the files' URLs
+        # Get all the information
         file_list = extractor.get_files_urls_names(url)
-        # Count the files
         amount = count_files(file_list, mode)
     except Exception as ex:
         # Handle requests exceptions
@@ -80,7 +82,7 @@ def parse_thread(url, mode, directory):
         print("Download failed for '{}'.".format(url))
         return
 
-    # Check if there's any files
+    # Check if there are any files
     if amount == 0:
         print("There are no files in this thread: {}".format(url))
         return
