@@ -22,17 +22,17 @@ parser = argparse.ArgumentParser(
 parser.add_argument("MODE", choices=["all", "images", "videos"],
     help="parse mode, e.g. what files to download")
 
-parser.add_argument("URL",
-    help="thread url")
+parser.add_argument("URLS", nargs="*",
+    help="thread urls")
 
 parser.add_argument("-o", metavar="DIR", default=".",
     help="output directory (default: current)")
 
 args = parser.parse_args()
 mode = args.MODE
-url = args.URL
+urls = args.URLS
 directory = os.path.abspath(args.o)
 
 
 # Parse the thread
-utils.parse_thread(url, mode, directory)
+# utils.parse_thread(url, mode, directory)
