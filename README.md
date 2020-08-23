@@ -7,15 +7,15 @@ This program is capable of downloading attachments from threads on [2ch](https:/
 
 ## Usage
 ```
-thread-parser.py [-h] [-o DIR] {all,images,videos} URL
+usage: thread-parser.py [-h] [-o DIR] {all,images,videos} [URLS [URLS ...]]
 
 positional arguments:
   {all,images,videos}  parse mode, e.g. what files to download
-  URL                  thread url
+    URLS                 thread urls
 
-optional arguments:
-  -h, --help           show this help message and exit
-  -o DIR               output directory (default: current)
+    optional arguments:
+      -h, --help           show this help message and exit
+        -o DIR               output directory (default: current)
 ```
 
 For example:
@@ -25,6 +25,16 @@ py thread-parser.py images https://2ch.hk/s/res/2127464.html -o img
 ```
 
 This will download all images from the 2127464 thread on /s/ in the `img` folder.
+
+Another one:
+
+```
+py thread-parser.py all https://boards.4channel.org/g/thread/77369090 https://boards.4channel.org/g/thread/77368911 -o threads
+```
+
+This will download all files from both threads and place them into separate folders with their thread number in the `threads` folder.
+
+_Pretty cool, huh?_
 
 __Attention__: by default, if the directory you have selected with `-o` option
 exists and there was an image with the conflicting name it won't be replaced.
