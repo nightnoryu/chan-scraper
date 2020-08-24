@@ -34,7 +34,5 @@ py thread-parser.py all https://boards.4channel.org/g/thread/77369090 https://bo
 
 This will download all files from both threads and place them into separate folders with their thread number in the `threads` folder.
 
-_Pretty cool, huh?_
-
 __Attention__: by default, if the directory you have selected with `-o` option
 exists and there was an image with the conflicting name it won't be replaced.
