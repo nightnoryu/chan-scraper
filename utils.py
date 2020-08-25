@@ -60,7 +60,7 @@ def what_board_is_this(url):
 def parse_thread(url, mode, directory, single=False):
     """Does the job on one thread"""
     # Log current thread
-    print("\nParsing '{}'".format(url))
+    print("Parsing '{}'".format(url))
 
     # Select the extractor
     extractor = None
