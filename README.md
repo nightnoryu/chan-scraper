@@ -42,6 +42,6 @@ If you want to add support for another imageboard, there is a simple scheme for 
 
   - `NAME` - a string representing imageboard's name. For example: `NAME = "fourchan"`;
   - `get_thread_number(url)` - a function that returns thread's number int according to the URL;
-  - `get_files_urls_names(url)` - a function that returns a list of tuples, each containing file's URL and name;
+  - `get_files_urls_names(url)` - a function that returns a list of tuples, each containing file's URL and name.
 
 Background implementation is up to you, but I suggest reading the documentation on imageboard's API.
