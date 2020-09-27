@@ -14,9 +14,8 @@ import extractors.dvach as dvach
 import extractors.fourchan as fourchan
 
 
-def main():
-    """Entry point of the script"""
-    # Parse arguments
+def parse_arguments():
+    """Process input arguments"""
     parser = argparse.ArgumentParser(
         description="""Downloads all files, images or videos from one
         or several threads on 2ch or 4chan.""")
@@ -31,12 +30,12 @@ def main():
         help="output directory (default: current)")
 
     args = parser.parse_args()
-    mode = args.MODE
-    urls = args.URLS
-    directory = os.path.abspath(args.o)
+    return args
 
 
-    # Check input URLS
+def check_arguments(urls, directory):
+    """Checks if the arguments are valid"""
+    # Check input URLs
     if not len(urls):
         print("Error: no URL provided.")
         sys.exit(1)
@@ -44,9 +43,23 @@ def main():
     if not os.path.isdir(directory):
         os.mkdir(directory)
 
+
+def main():
+    """Entry point of the script"""
+    # Get the input arguments
+    args = parse_arguments()
+    mode = args.MODE
+    urls = args.URLS
+    directory = os.path.abspath(args.o)
+
+    # Check the input arguments
+    check_arguments(urls, directory)
+
+
+    # Parse single thread
     if len(urls) == 1:
-        # Parse single thread
         utils.parse_thread(urls[0], mode, directory, True)
+    # Parse multiple threads
     else:
         # Set up counter
         n = 1
