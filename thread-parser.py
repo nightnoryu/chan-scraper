@@ -55,7 +55,6 @@ def main():
     # Check the input arguments
     check_arguments(urls, directory)
 
-
     # Parse single thread
     if len(urls) == 1:
         utils.parse_thread(urls[0], mode, directory, True)
