@@ -26,7 +26,7 @@ def parse_arguments():
     parser.add_argument("URLS", nargs="*",
         help="thread urls")
 
-    parser.add_argument("-o", metavar="DIR", default=".",
+    parser.add_argument("--output", "-o", metavar="DIR", default=".",
         help="output directory (default: current)")
 
     args = parser.parse_args()
@@ -50,7 +50,7 @@ def main():
     args = parse_arguments()
     mode = args.MODE
     urls = args.URLS
-    directory = os.path.abspath(args.o)
+    directory = os.path.abspath(args.output)
 
     # Check the input arguments
     check_arguments(urls, directory)
