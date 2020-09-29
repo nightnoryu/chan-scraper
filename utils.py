@@ -92,7 +92,7 @@ def parse_thread(url, mode, directory, single=False):
         number = extractor.thread_number
         # Create a new directory for this thread
         directory = os.path.join(directory,
-                                 "{}_{}".format(extractor.NAME, number))
+                                 "{}_{}".format(extractor.name, number))
         # Check if the directory already exists
         if not os.path.isdir(directory):
             os.mkdir(directory)
