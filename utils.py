@@ -5,8 +5,8 @@ import os
 
 import requests
 
-import extractors.dvach as dvach
-import extractors.fourchan as fourchan
+from extractors.dvach import Dvach
+from extractors.fourchan import Fourchan
 
 
 def get_extension(name):
@@ -65,16 +65,16 @@ def parse_thread(url, mode, directory, single=False):
     # Select the extractor
     extractor = None
     if what_board_is_this(url) == "2ch":
-        extractor = dvach
+        extractor = Dvach(url)
     elif what_board_is_this(url) == "4chan":
-        extractor = fourchan
+        extractor = Fourchan(url)
     else:
         print("URL '{}' is not supported.".format(url))
         return
 
     try:
         # Get all the information
-        file_list = extractor.get_files_urls_names(url)
+        file_list = extractor.get_files_urls_names()
         amount = count_files(file_list, mode)
     except Exception as ex:
         # Handle requests exceptions
@@ -89,7 +89,7 @@ def parse_thread(url, mode, directory, single=False):
 
     # Create a separate directory for this thread if there are many
     if not single:
-        number = extractor.get_thread_number(url)
+        number = extractor.thread_number
         # Create a new directory for this thread
         directory = os.path.join(directory,
                                  "{}_{}".format(extractor.NAME, number))
