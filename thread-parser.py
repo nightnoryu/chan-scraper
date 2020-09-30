@@ -10,8 +10,6 @@ except ImportError:
     sys.exit(1)
 
 import utils
-import extractors.dvach as dvach
-import extractors.fourchan as fourchan
 
 
 def parse_arguments():
