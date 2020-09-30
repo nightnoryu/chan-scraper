@@ -55,6 +55,37 @@ def select_extractor(url):
     return extractor
 
 
+def download_files(file_list, mode, directory, amount):
+    """Loops through the files & downloads them"""
+    # Posts loop
+    n = 1
+    for file_url, file_name in file_list:
+        ext = get_extension(file_url)
+        # Save the files according to the mode
+        if ((mode == "images" and is_image(ext)) or
+            (mode == "videos" and is_video(ext)) or
+            (mode == "all")):
+            # Save the file
+            save_file(file_url, directory, file_name)
+            # Log the action
+            print("{:>3}/{} - {}".format(n, amount, file_name))
+            # Update counter
+            n += 1
+
+
+def parse_multiple_threads(urls, mode, directory):
+    """Loops through the links & calls parse_thread() on each"""
+    # Set up counter
+    n = 1
+    total = len(urls)
+    # Parse multiple threads
+    for url in urls:
+        # Log
+        print("\n[{} out of {}]".format(n, total))
+        parse_thread(url, mode, directory)
+        n += 1
+
+
 def parse_thread(url, mode, directory, single=False):
     """Does the job on one thread"""
     # Log current thread
@@ -92,19 +123,6 @@ def parse_thread(url, mode, directory, single=False):
         if not os.path.isdir(directory):
             os.mkdir(directory)
 
-    # Actual downloading is happening here
+    # Download the files
     print("Downloading...")
-    # Posts loop
-    n = 1
-    for file_url, file_name in file_list:
-        ext = get_extension(file_url)
-        # Save the files according to the mode
-        if ((mode == "images" and is_image(ext)) or
-            (mode == "videos" and is_video(ext)) or
-            (mode == "all")):
-            # Save the file
-            save_file(file_url, directory, file_name)
-            # Log the action
-            print("{:>3}/{} - {}".format(n, amount, file_name))
-            # Update counter
-            n += 1
+    download_files(file_list, mode, directory, amount)

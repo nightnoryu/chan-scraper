@@ -60,15 +60,7 @@ def main():
         utils.parse_thread(urls[0], mode, directory, True)
     # Parse multiple threads
     else:
-        # Set up counter
-        n = 1
-        total = len(urls)
-        # Parse multiple threads
-        for url in urls:
-            # Log
-            print("\n[{} out of {}]".format(n, total))
-            utils.parse_thread(url, mode, directory)
-            n += 1
+        utils.parse_multiple_threads(urls, mode, directory)
 
 
 # Entry point
