@@ -1,6 +1,4 @@
-# This module provides general functions
-
-
+# This module provides general functions for thread parsing
 import os
 
 import requests
