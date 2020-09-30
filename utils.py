@@ -56,8 +56,8 @@ def select_extractor(url):
 
 
 def download_files(file_list, mode, directory, amount):
-    """Loops through the files & downloads them"""
-    # Posts loop
+    """Loops through the files in the file_list & downloads them"""
+    # Set up the counter
     n = 1
     for file_url, file_name in file_list:
         ext = get_extension(file_url)
@@ -68,14 +68,14 @@ def download_files(file_list, mode, directory, amount):
             # Save the file
             save_file(file_url, directory, file_name)
             # Log the action
-            print("{:>3}/{} - {}".format(n, amount, file_name))
-            # Update counter
+            print("{:>4}/{} - {}".format(n, amount, file_name))
+            # Update the counter
             n += 1
 
 
 def parse_multiple_threads(urls, mode, directory):
     """Loops through the links & calls parse_thread() on each"""
-    # Set up counter
+    # Set up the counter
     n = 1
     total = len(urls)
     # Parse multiple threads
@@ -84,6 +84,15 @@ def parse_multiple_threads(urls, mode, directory):
         print("\n[{} out of {}]".format(n, total))
         parse_thread(url, mode, directory)
         n += 1
+
+
+def create_thread_directory(directory, name, number):
+    """Creates & returns the thread-specific directory path"""
+    new_dir = os.path.join(directory, "{}_{}".format(name, number))
+    # Create the directory if it does not exist
+    if not os.path.isdir(directory):
+        os.mkdir(directory)
+    return new_dir
 
 
 def parse_thread(url, mode, directory, single=False):
@@ -115,13 +124,8 @@ def parse_thread(url, mode, directory, single=False):
 
     # Create a separate directory for this thread if there are many
     if not single:
-        number = extractor.thread_number
-        # Create a new directory for this thread
-        directory = os.path.join(directory,
-                                 "{}_{}".format(extractor.name, number))
-        # Check if the directory already exists
-        if not os.path.isdir(directory):
-            os.mkdir(directory)
+        directory = create_thread_directory(directory, extractor.name,
+                                            extractor.thread_number)
 
     # Download the files
     print("Downloading...")
