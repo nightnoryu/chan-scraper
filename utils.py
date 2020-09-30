@@ -44,15 +44,15 @@ def save_file(url, directory, name):
                 file.write(chunk)
 
 
-def what_board_is_this(url):
-    """Returns a name of the board depending on the thread URL"""
-    board = None
+def select_extractor(url):
+    """Returns a corresponding extractor depending on the thread URL"""
+    extractor = None
     if url.startswith("https://2ch."):
-        board = "2ch"
+        extractor = Dvach(url)
     elif (url.startswith("https://boards.4channel.org") or
           url.startswith("https://boards.4chan.org")):
-        board = "4chan"
-    return board
+        extractor = Fourchan(url)
+    return extractor
 
 
 def parse_thread(url, mode, directory, single=False):
@@ -61,14 +61,11 @@ def parse_thread(url, mode, directory, single=False):
     print("Parsing '{}'".format(url))
 
     # Select the extractor
-    extractor = None
-    if what_board_is_this(url) == "2ch":
-        extractor = Dvach(url)
-    elif what_board_is_this(url) == "4chan":
-        extractor = Fourchan(url)
-    else:
-        print("URL '{}' is not supported.".format(url))
-        return
+    extractor = select_extractor(url)
+    # Check if it's valid
+    if not extractor:
+        print("URL '{}' is not supported.")
+        sys.exit(1)
 
     try:
         # Get all the information
