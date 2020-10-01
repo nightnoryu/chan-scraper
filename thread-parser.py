@@ -63,4 +63,8 @@ def main():
 
 # Entry point
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("Keyboard interrupt.")
+        sys.exit(0)
