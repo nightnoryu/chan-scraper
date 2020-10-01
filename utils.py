@@ -47,17 +47,24 @@ def save_file(url, directory, name):
 
 def select_extractor(url):
     """Returns a corresponding extractor depending on the thread URL"""
-    dvach_re = re.compile(r"""https://  # Protocol
-                              2ch\.hk/  # Domain
-                              \w{1,4}/  # Board code
+    # Set up regexps
+    dvach_re = re.compile(r"""https://
+                              2ch\.hk/
+                              \w{1,4}/
                               res/
-                              \d+\.html # Thread number
-                              #\d+      # Optional post code""", re.X)
+                              \d+\.html
+                              (\#\d+)?""", re.X)
+    fourchan_re = re.compile(r"""https://
+                                 boards\.4chan(nel)?\.org/
+                                 \w{1,4}/
+                                 thread/
+                                 \d+/
+                                 [a-zA-Z0-9\-]+
+                                 (\#p\d+)?""", re.X)
     extractor = None
     if dvach_re.match(url):
         extractor = Dvach(url)
-    elif (url.startswith("https://boards.4channel.org") or
-          url.startswith("https://boards.4chan.org")):
+    elif fourchan_re.match(url):
         extractor = Fourchan(url)
     return extractor
 
