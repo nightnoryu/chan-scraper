@@ -104,8 +104,8 @@ def create_thread_directory(directory, name, number):
     """Creates & returns the thread-specific directory path"""
     new_dir = os.path.join(directory, "{}_{}".format(name, number))
     # Create the directory if it does not exist
-    if not os.path.isdir(directory):
-        os.mkdir(directory)
+    if not os.path.isdir(new_dir):
+        os.mkdir(new_dir)
     return new_dir
 
 
