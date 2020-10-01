@@ -1,5 +1,6 @@
 # This module provides general functions for thread parsing
 import os
+import re
 
 import requests
 
@@ -46,8 +47,14 @@ def save_file(url, directory, name):
 
 def select_extractor(url):
     """Returns a corresponding extractor depending on the thread URL"""
+    dvach_re = re.compile(r"""https://  # Protocol
+                              2ch\.hk/  # Domain
+                              \w{1,4}/  # Board code
+                              res/
+                              \d+\.html # Thread number
+                              #\d+      # Optional post code""", re.X)
     extractor = None
-    if url.startswith("https://2ch."):
+    if dvach_re.match(url):
         extractor = Dvach(url)
     elif (url.startswith("https://boards.4channel.org") or
           url.startswith("https://boards.4chan.org")):
