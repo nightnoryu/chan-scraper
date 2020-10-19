@@ -4,6 +4,7 @@ import sys
 
 # Check if the module is installed
 try:
+    # Change imports...
     import requests
 except ImportError:
     print("Please install requests module.")
@@ -18,6 +19,7 @@ def parse_arguments():
         description="""Downloads all files, images or videos from one
         or several threads on 2ch or 4chan.""")
 
+    # Change arguments...
     parser.add_argument("MODE", choices=["all", "images", "videos"],
         help="parse mode, e.g. what files to download")
 
