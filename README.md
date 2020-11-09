@@ -3,8 +3,8 @@ This program is capable of downloading attachments from threads on [2ch](https:/
 
 
 ## Requirements
-* Python 3
-* [requests](https://pypi.org/project/requests/)
+- Python 3
+- [requests](https://pypi.org/project/requests/)
 
 
 ## Installation
@@ -52,8 +52,8 @@ __Attention__: by default, if the directory you have selected with `-o` option e
 ## Extending
 If you want to add support for another imageboard, there is a simple scheme for an 'extractor'. It is a class containing the following properties:
 
-* `name` - string representing imageboard's name. For example: `self.name = "fourchan"`;
-* `thread_number` - `int` with thread's number according to the URL;
-* `get_files_urls_names()` - function that returns a tuple (or list) of tuples, each containing files' URL and name.
+- `name` - string representing imageboard's name. For example: `self.name = "fourchan"`;
+- `thread_number` - `int` with thread's number according to the URL;
+- `get_files_urls_names()` - function that returns a tuple (or list) of tuples, each containing files' URL and name.
 
 Background implementation is up to you, but I suggest reading the documentation on imageboard's API and use it if possible. Also refer to the existing extractors for more practical info.
