@@ -3,8 +3,9 @@ This program is capable of downloading attachments from threads on [2ch](https:/
 
 
 ## Requirements
-- Python 3
+- [Python 3](https://www.python.org/)
 - [requests](https://pypi.org/project/requests/)
+- (optional for installation) [git](https://git-scm.com/)
 
 
 ## Installation
@@ -13,6 +14,8 @@ Clone the repo using this command:
 ```
 git clone https://github.com/m3tro1d/thread-parser
 ```
+
+Or just download the [zip](https://github.com/m3tro1d/thread-parser/archive/master.zip).
 
 Master branch is usually stable, so there won't be any issues.
 
