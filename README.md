@@ -7,6 +7,16 @@ This program is capable of downloading attachments from threads on [2ch](https:/
 * [requests](https://pypi.org/project/requests/)
 
 
+## Installation
+Clone the repo using this command:
+
+```
+git clone https://github.com/m3tro1d/thread-parser
+```
+
+Master branch is usually stable, so there won't be any issues.
+
+
 ## Usage
 ```
 usage: thread-parser.py [-h] [-o DIR] {all,images,videos} [URLS [URLS ...]]
