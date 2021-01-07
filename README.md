@@ -5,7 +5,7 @@ This program is capable of downloading attachments from threads on [2ch](https:/
 ## Requirements
 - [Python 3](https://www.python.org/)
 - [requests](https://pypi.org/project/requests/)
-- (optional for installation) [git](https://git-scm.com/)
+- (optional for downloading and updating) [git](https://git-scm.com/)
 
 
 ## Installation
