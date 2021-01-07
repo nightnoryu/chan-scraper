@@ -117,7 +117,7 @@ def parse_thread(url, mode, directory, single=False):
     # Select the extractor
     extractor = select_extractor(url)
     # Check if it's valid
-    if not extractor:
+    if extractor is None:
         print("URL '{}' is not supported.")
         return
 
