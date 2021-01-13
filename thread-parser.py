@@ -70,3 +70,6 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         utils.err("\nUser interrupt")
         sys.exit(1)
+    except requests.exceptions.ConnectionError as e:
+        utils.err("\nConnection error")
+        sys.exit(1)
