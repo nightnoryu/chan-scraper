@@ -66,8 +66,8 @@ if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        utils.err("\nUser interrupt")
+        print("\nUser interrupt", file=sys.stderr)
         sys.exit(1)
     except requests.exceptions.ConnectionError as e:
-        utils.err("\nConnection error")
+        print("\nConnection error", file=sys.stderr)
         sys.exit(1)

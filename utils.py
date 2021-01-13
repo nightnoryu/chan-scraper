@@ -13,11 +13,6 @@ from extractors.dvach import Dvach
 from extractors.fourchan import Fourchan
 
 
-def err(msg):
-    """Logs error to stderr"""
-    print(msg, file=sys.stderr)
-
-
 def get_extension(name):
     """Returns file's extension without dot"""
     return name.split(".")[-1]
