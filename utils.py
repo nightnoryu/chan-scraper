@@ -3,7 +3,11 @@ import os
 import re
 import sys
 
-import requests
+try:
+    import requests
+except ImportError:
+    print("'requests' module is not installed", file=sys.stderr)
+    sys.exit(1)
 
 from extractors.dvach import Dvach
 from extractors.fourchan import Fourchan

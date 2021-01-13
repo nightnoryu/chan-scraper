@@ -2,12 +2,10 @@ import argparse
 import os
 import sys
 
-# Check if the module is installed
 try:
-    # Change imports...
     import requests
 except ImportError:
-    print("Please install requests module.")
+    print("'requests' module is not installed", file=sys.stderr)
     sys.exit(1)
 
 import utils

@@ -1,4 +1,8 @@
-import requests
+try:
+    import requests
+except ImportError:
+    print("'requests' module is not installed", file=sys.stderr)
+    sys.exit(1)
 
 
 class Fourchan():
