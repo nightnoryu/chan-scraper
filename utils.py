@@ -1,11 +1,17 @@
 # This module provides general functions for thread parsing
 import os
 import re
+import sys
 
 import requests
 
 from extractors.dvach import Dvach
 from extractors.fourchan import Fourchan
+
+
+def err(msg):
+    """Logs error to stderr"""
+    print(msg, file=sys.stderr)
 
 
 def get_extension(name):
