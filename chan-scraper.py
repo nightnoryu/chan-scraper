@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import argparse
 import os
 import sys
@@ -10,6 +12,9 @@ except ImportError:
 
 import utils
 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Functions
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 def parse_arguments():
     """Process input arguments"""
@@ -41,6 +46,9 @@ def check_arguments(urls, directory):
     if not os.path.isdir(directory):
         os.mkdir(directory)
 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Main script
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 def main():
     """Entry point of the script"""
