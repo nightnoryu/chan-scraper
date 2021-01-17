@@ -21,8 +21,8 @@ class CustomArgumentParser(argparse.ArgumentParser):
     """Override ArgumentParser's help message"""
     def format_help(self):
         help_text = dedent(f"""\
-        chan-parser is a script for downloading attachments from one or several threads on 2ch or 4chan.
-        https://github.com/m3tro1d/chan-scraper
+        Chan parser is a script for downloading attachments from one or several
+        threads on 2ch or 4chan.
 
         Usage: {self.prog} [OPTIONS] URL [URL]...
 
@@ -31,8 +31,12 @@ class CustomArgumentParser(argparse.ArgumentParser):
 
         Options:
           -h,  --help     show help
-          -m,  --mode     specify content for downloading (all|images|videos) (def: {self.get_default("mode")})
+          -m,  --mode     specify content for downloading:
+                          all, images, videos (def: {self.get_default("mode")})
           -o,  --output   output directory (def: current)
+
+        For more information visit:
+        https://github.com/m3tro1d/chan-scraper
         """)
         return help_text
 
