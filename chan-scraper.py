@@ -24,13 +24,14 @@ class CustomArgumentParser(argparse.ArgumentParser):
         chan-parser is a script for downloading attachments from one or several threads on 2ch or 4chan.
         https://github.com/m3tro1d/chan-scraper
 
-        Usage: {self.prog} {{all|images|videos}} [OPTIONS] URL [URL]...
+        Usage: {self.prog} [OPTIONS] URL [URL]...
 
         URL:
           Thread's URL
 
         Options:
           -h,  --help     show help
+          -m,  --mode     specify content for downloading (all|images|videos) (def: all)
           -o,  --output   output directory (def: current)
         """)
         return help_text
@@ -49,13 +50,14 @@ def valid_dir(string):
 
 def parse_arguments():
     """Process input arguments"""
-    parser = CustomArgumentParser(usage="%(prog)s {all|images|videos} [OPTIONS] URL [URL]...")
+    parser = CustomArgumentParser(usage="%(prog)s [OPTIONS] URL [URL]...")
 
-    parser.add_argument("mode", choices=["all", "images", "videos"])
-
-    parser.add_argument("urls", nargs="*")
+    parser.add_argument("-m", "--mode", choices=["all", "images", "videos"],
+                        default="all")
 
     parser.add_argument("-o", "--output", default=".", type=valid_dir)
+
+    parser.add_argument("urls", nargs="*")
 
     args = parser.parse_args()
     return args
