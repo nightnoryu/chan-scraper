@@ -39,6 +39,14 @@ class CustomArgumentParser(argparse.ArgumentParser):
 # Functions
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+def valid_dir(string):
+    """Checks and returns the output directory path"""
+    path = os.path.abspath(string)
+    if not os.path.isdir(path):
+        os.mkdir(path)
+    return path
+
+
 def parse_arguments():
     """Process input arguments"""
     parser = CustomArgumentParser(usage="%(prog)s {all|images|videos} [OPTIONS] URL [URL]...")
@@ -47,21 +55,18 @@ def parse_arguments():
 
     parser.add_argument("urls", nargs="*")
 
-    parser.add_argument("-o", "--output", default=".")
+    parser.add_argument("-o", "--output", default=".", type=valid_dir)
 
     args = parser.parse_args()
     return args
 
 
-def check_arguments(urls, directory):
+def check_arguments(urls):
     """Checks if the arguments are valid"""
     # Check input URLs
     if not len(urls):
         print("Error: no URL provided.")
         sys.exit(1)
-    # Check output directory
-    if not os.path.isdir(directory):
-        os.mkdir(directory)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Main script
@@ -73,10 +78,10 @@ def main():
     args = parse_arguments()
     mode = args.mode
     urls = args.urls
-    directory = os.path.abspath(args.output)
+    directory = args.output
 
     # Check the input arguments
-    check_arguments(urls, directory)
+    check_arguments(urls)
 
     # Parse single thread
     if len(urls) == 1:
