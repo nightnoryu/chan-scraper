@@ -31,7 +31,7 @@ class CustomArgumentParser(argparse.ArgumentParser):
 
         Options:
           -h,  --help     show help
-          -m,  --mode     specify content for downloading (all|images|videos) (def: all)
+          -m,  --mode     specify content for downloading (all|images|videos) (def: {self.get_default("mode")})
           -o,  --output   output directory (def: current)
         """)
         return help_text
