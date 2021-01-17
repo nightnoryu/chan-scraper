@@ -22,21 +22,23 @@ Master branch is usually stable, so there won't be any issues.
 
 ## Usage
 ```
-usage: chan-scraper.py [-h] [-o DIR] {all,images,videos} [URLS [URLS ...]]
+chan-parser is a script for downloading attachments from one or several threads on 2ch or 4chan.
 
-positional arguments:
-  {all,images,videos}  parse mode, e.g. what files to download
-    URLS                 thread urls
+Usage: chan-scraper.py [OPTIONS] URL [URL]...
 
-    optional arguments:
-      -h, --help           show this help message and exit
-        -o DIR               output directory (default: current)
+URL:
+  Thread's URL
+
+Options:
+  -h,  --help     show help
+  -m,  --mode     specify content for downloading (all|images|videos) (def: all)
+  -o,  --output   output directory (def: current)
 ```
 
 For example:
 
 ```
-py chan-scraper.py images https://2ch.hk/s/res/2127464.html -o img
+py chan-scraper.py -o img -m images https://2ch.hk/s/res/2127464.html
 ```
 
 This will download all images from the 2127464 thread on /s/ in the `img` folder.
@@ -44,12 +46,12 @@ This will download all images from the 2127464 thread on /s/ in the `img` folder
 Another one:
 
 ```
-py chan-scraper.py all https://boards.4channel.org/g/thread/77369090 https://boards.4channel.org/g/thread/77368911 -o threads
+py chan-scraper.py -o threads https://boards.4channel.org/g/thread/77369090 https://boards.4channel.org/g/thread/77368911
 ```
 
 This will download all files from both threads and place them into separate folders with their thread number in the `threads` folder.
 
-__Attention__: by default, if the directory you have selected with `-o` option exists and there was an image with the conflicting name it won't be replaced.
+**Attention**: by default, if the directory you have selected with `-o` option exists and there was an image with the conflicting name it **won't** be replaced.
 
 
 ## Extending
