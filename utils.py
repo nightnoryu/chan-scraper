@@ -87,7 +87,7 @@ def download_files(file_list, mode, directory, amount):
             # Save the file
             save_file(file_url, directory, file_name)
             # Log the action
-            print("{:>4}/{} - {}".format(n, amount, file_name))
+            print(f"{n : >4}/{amount} - {file_name}")
             # Update the counter
             n += 1
 
@@ -95,13 +95,13 @@ def download_files(file_list, mode, directory, amount):
 def parse_multiple_threads(urls, mode, directory):
     """Loops through the links & calls parse_thread() on each"""
     for i, url in enumerate(urls, start=1):
-        print("\n[{} out of {}]".format(i, len(urls)))
+        print(f"\n[{i} out of {len(urls)}]")
         parse_thread(url, mode, directory)
 
 
 def create_thread_directory(directory, name, number):
     """Creates & returns the thread-specific directory path"""
-    new_dir = os.path.join(directory, "{}_{}".format(name, number))
+    new_dir = os.path.join(directory, f"{name}_{number}")
     # Create the directory if it does not exist
     if not os.path.isdir(new_dir):
         os.mkdir(new_dir)
@@ -111,13 +111,13 @@ def create_thread_directory(directory, name, number):
 def parse_thread(url, mode, directory, single=False):
     """Does the job on one thread"""
     # Log current thread
-    print("Parsing '{}'".format(url))
+    print(f"Parsing '{url}'")
 
     # Select the extractor
     extractor = select_extractor(url)
     # Check if it's valid
     if extractor is None:
-        print("URL '{}' is not supported.")
+        print(f"URL '{url}' is not supported.")
         return
 
     try:
@@ -126,13 +126,13 @@ def parse_thread(url, mode, directory, single=False):
         amount = count_files(file_list, mode)
     except Exception as ex:
         # Handle requests exceptions
-        print("Request error: {}".format(ex))
-        print("Download failed for '{}'.".format(url))
+        print(f"Request error: {ex}")
+        print(f"Download failed for '{url}'")
         return
 
     # Check if there are any files
     if amount == 0:
-        print("There are no files in this thread: {}".format(url))
+        print(f"There are no specified files in this thread: {url}")
         return
 
     # Create a separate directory for this thread if there are many
