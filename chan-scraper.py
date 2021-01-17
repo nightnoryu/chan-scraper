@@ -60,14 +60,6 @@ def parse_arguments():
     args = parser.parse_args()
     return args
 
-
-def check_arguments(urls):
-    """Checks if the arguments are valid"""
-    # Check input URLs
-    if not len(urls):
-        print("Error: no URL provided.")
-        sys.exit(1)
-
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Main script
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -79,9 +71,6 @@ def main():
     mode = args.mode
     urls = args.urls
     directory = args.output
-
-    # Check the input arguments
-    check_arguments(urls)
 
     # Parse single thread
     if len(urls) == 1:
