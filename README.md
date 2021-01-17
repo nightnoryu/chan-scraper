@@ -22,8 +22,6 @@ Master branch is usually stable, so there won't be any issues.
 
 ## Usage
 ```
-chan-parser is a script for downloading attachments from one or several threads on 2ch or 4chan.
-
 Usage: chan-scraper.py [OPTIONS] URL [URL]...
 
 URL:
