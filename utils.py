@@ -94,15 +94,9 @@ def download_files(file_list, mode, directory, amount):
 
 def parse_multiple_threads(urls, mode, directory):
     """Loops through the links & calls parse_thread() on each"""
-    # Set up the counter
-    n = 1
-    total = len(urls)
-    # Parse multiple threads
-    for url in urls:
-        # Log
-        print("\n[{} out of {}]".format(n, total))
+    for i, url in enumerate(urls, start=1):
+        print("\n[{} out of {}]".format(i, len(urls)))
         parse_thread(url, mode, directory)
-        n += 1
 
 
 def create_thread_directory(directory, name, number):
