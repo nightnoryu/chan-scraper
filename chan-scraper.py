@@ -3,6 +3,7 @@
 import argparse
 import os
 import sys
+from textwrap import dedent
 
 try:
     import requests
@@ -13,24 +14,40 @@ except ImportError:
 import utils
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Classes
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+class CustomArgumentParser(argparse.ArgumentParser):
+    """Override ArgumentParser's help message"""
+    def format_help(self):
+        help_text = dedent(f"""\
+        chan-parser is a script for downloading attachments from one or several threads on 2ch or 4chan.
+        https://github.com/m3tro1d/chan-scraper
+
+        Usage: {self.prog} {{all|images|videos}} [OPTIONS] URL [URL]...
+
+        URL:
+          Thread's URL
+
+        Options:
+          -h,  --help     show help
+          -o,  --output   output directory (def: current)
+        """)
+        return help_text
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Functions
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 def parse_arguments():
     """Process input arguments"""
-    parser = argparse.ArgumentParser(
-        description="""Downloads all files, images or videos from one
-        or several threads on 2ch or 4chan.""")
+    parser = CustomArgumentParser(usage="%(prog)s {all|images|videos} [OPTIONS] URL [URL]...")
 
-    # Change arguments...
-    parser.add_argument("MODE", choices=["all", "images", "videos"],
-        help="parse mode, e.g. what files to download")
+    parser.add_argument("mode", choices=["all", "images", "videos"])
 
-    parser.add_argument("URLS", nargs="*",
-        help="thread urls")
+    parser.add_argument("urls", nargs="*")
 
-    parser.add_argument("--output", "-o", metavar="DIR", default=".",
-        help="output directory (default: current)")
+    parser.add_argument("-o", "--output", default=".")
 
     args = parser.parse_args()
     return args
@@ -54,8 +71,8 @@ def main():
     """Entry point of the script"""
     # Get the input arguments
     args = parse_arguments()
-    mode = args.MODE
-    urls = args.URLS
+    mode = args.mode
+    urls = args.urls
     directory = os.path.abspath(args.output)
 
     # Check the input arguments
