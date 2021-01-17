@@ -76,9 +76,7 @@ def select_extractor(url):
 
 def download_files(file_list, mode, directory, amount):
     """Loops through the files in the file_list & downloads them"""
-    # Set up the counter
-    n = 1
-    for file_url, file_name in file_list:
+    for i, (file_url, file_name) in enumerate(file_list, start=1):
         ext = get_extension(file_url)
         # Save the files according to the mode
         if ((mode == "images" and is_image(ext)) or
@@ -87,9 +85,8 @@ def download_files(file_list, mode, directory, amount):
             # Save the file
             save_file(file_url, directory, file_name)
             # Log the action
-            print(f"{n : >4}/{amount} - {file_name}")
+            print(f"{i : >4}/{amount} - {file_name}")
             # Update the counter
-            n += 1
 
 
 def parse_multiple_threads(urls, mode, directory):
