@@ -1,4 +1,4 @@
-# Thread parser
+# Chan scraper
 This program is capable of downloading attachments from threads on [2ch](https://2ch.hk) and [4chan](https://4channel.org). You can select what to download: images, videos or all files.
 
 
@@ -12,17 +12,17 @@ This program is capable of downloading attachments from threads on [2ch](https:/
 Clone the repo using this command:
 
 ```
-git clone https://github.com/m3tro1d/thread-parser
+git clone https://github.com/m3tro1d/chan-scraper
 ```
 
-Or just download the [zip](https://github.com/m3tro1d/thread-parser/archive/master.zip).
+Or just download the [zip](https://github.com/m3tro1d/chan-scraper/archive/master.zip).
 
 Master branch is usually stable, so there won't be any issues.
 
 
 ## Usage
 ```
-usage: thread-parser.py [-h] [-o DIR] {all,images,videos} [URLS [URLS ...]]
+usage: chan-scraper.py [-h] [-o DIR] {all,images,videos} [URLS [URLS ...]]
 
 positional arguments:
   {all,images,videos}  parse mode, e.g. what files to download
@@ -36,7 +36,7 @@ positional arguments:
 For example:
 
 ```
-py thread-parser.py images https://2ch.hk/s/res/2127464.html -o img
+py chan-scraper.py images https://2ch.hk/s/res/2127464.html -o img
 ```
 
 This will download all images from the 2127464 thread on /s/ in the `img` folder.
@@ -44,7 +44,7 @@ This will download all images from the 2127464 thread on /s/ in the `img` folder
 Another one:
 
 ```
-py thread-parser.py all https://boards.4channel.org/g/thread/77369090 https://boards.4channel.org/g/thread/77368911 -o threads
+py chan-scraper.py all https://boards.4channel.org/g/thread/77369090 https://boards.4channel.org/g/thread/77368911 -o threads
 ```
 
 This will download all files from both threads and place them into separate folders with their thread number in the `threads` folder.
