@@ -58,14 +58,14 @@ def select_extractor(url):
                               \w{1,4}/
                               res/
                               \d+\.html
-                              (\#\d+)?""", re.X)
+                              (\#\d+)?/?""", re.X)
     fourchan_re = re.compile(r"""https://
                                  boards\.4chan(nel)?\.org/
                                  \w{1,4}/
                                  thread/
-                                 \d+/
+                                 \d+(/
                                  [a-zA-Z0-9\-]+
-                                 (\#p\d+)?""", re.X)
+                                 (\#p\d+)?)?/?""", re.X)
     extractor = None
     if dvach_re.match(url):
         extractor = Dvach(url)
