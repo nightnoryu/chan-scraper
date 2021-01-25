@@ -39,6 +39,20 @@ def count_files(files_list, mode="all"):
     return n
 
 
+def req_get(url):
+    """Makes a proper GET request and returns the response object"""
+    try:
+        r = requests.get(url)
+        r.raise_for_status()
+    except requests.ConnectionError as e:
+        print(f"Connection error: {e}", file=sys.stderr)
+        sys.exit(1)
+    except requests.HTTPError as e:
+        print(f"HTTP error: {e}", file=sys.stderr)
+        sys.exit(1)
+    return r
+
+
 def save_file(url, directory, name):
     """Save a file into the specified directory"""
     # Check if the image already exists
@@ -46,7 +60,7 @@ def save_file(url, directory, name):
     # Do not replace files
     if not os.path.isfile(full_name):
         with open(full_name, "wb") as file:
-            for chunk in requests.get(url):
+            for chunk in req_get(url):
                 file.write(chunk)
 
 
