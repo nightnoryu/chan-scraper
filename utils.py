@@ -66,12 +66,13 @@ def select_extractor(url):
                                  \d+(/
                                  [a-zA-Z0-9\-]+
                                  (\#p\d+)?)?/?""", re.X)
-    extractor = None
-    if dvach_re.match(url):
-        extractor = Dvach(url)
-    elif fourchan_re.match(url):
-        extractor = Fourchan(url)
-    return extractor
+    match = dvach_re.match(url)
+    if match:
+        return Dvach(match.group(0))
+    match = fourchan_re.match(url)
+    if match:
+        return Fourchan(match.group(0))
+    return None
 
 
 def download_files(file_list, mode, directory, amount):
