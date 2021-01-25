@@ -5,12 +5,6 @@ import os
 import sys
 from textwrap import dedent
 
-try:
-    import requests
-except ImportError:
-    print("'requests' module is not installed", file=sys.stderr)
-    sys.exit(1)
-
 import utils
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -92,7 +86,4 @@ if __name__ == "__main__":
         main()
     except KeyboardInterrupt:
         print("\nUser interrupt", file=sys.stderr)
-        sys.exit(1)
-    except requests.exceptions.ConnectionError as e:
-        print("\nConnection error", file=sys.stderr)
         sys.exit(1)
