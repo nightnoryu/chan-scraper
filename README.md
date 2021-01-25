@@ -60,3 +60,8 @@ If you want to add support for another imageboard, there is a simple scheme for 
 - `get_files_urls_names()` - function that returns a tuple (or list) of tuples, each containing files' URL and name.
 
 Background implementation is up to you, but I suggest reading the documentation on imageboard's API and use it if possible. Also refer to the existing extractors for more practical info.
+
+
+## TODO
+- [ ] Pass the thread if it yields an HTTP error and continue to other threads (make it an option ignore-errors?)
+- [ ] Print the full information (summary) at the end of the downloading (make it an option?)
