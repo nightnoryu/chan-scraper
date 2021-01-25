@@ -1,3 +1,5 @@
+import sys
+
 try:
     import requests
 except ImportError:
@@ -21,11 +23,16 @@ class Fourchan():
 
     def get_thread_json(self):
         """Sets self.thread_json according to self.url"""
-        # Get the JSON response
-        response = requests.get(self.api_url)
-        # Check response status
-        response.raise_for_status()
-        # Parse it down
+        # Make a good request
+        try:
+            response = requests.get(self.api_url)
+            response.raise_for_status()
+        except requests.ConnectionError as e:
+            print(f"Connection error: {e}", file=sys.stderr)
+            sys.exit(1)
+        except requests.HTTPError as e:
+            print(f"HTTP error: {e}", file=sys.stderr)
+            sys.exit(1)
         self.thread_json = response.json()
 
     def get_thread_number(self):
