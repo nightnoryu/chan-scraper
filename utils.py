@@ -41,15 +41,8 @@ def count_files(files_list, mode="all"):
 
 def req_get(url):
     """Makes a proper GET request and returns the response object"""
-    try:
-        r = requests.get(url)
-        r.raise_for_status()
-    except requests.ConnectionError as e:
-        print(f"Connection error: {e}", file=sys.stderr)
-        sys.exit(1)
-    except requests.HTTPError as e:
-        print(f"HTTP error: {e}", file=sys.stderr)
-        sys.exit(1)
+    r = requests.get(url)
+    r.raise_for_status()
     return r
 
 
@@ -88,10 +81,13 @@ def download_files(file_list, mode, directory, amount):
             (mode == "videos" and is_video(ext)) or
             (mode == "all")):
             # Save the file
-            save_file(file_url, directory, file_name)
-            # Log the action
-            print(f"{i : >4}/{amount} - {file_name}")
-            # Update the counter
+            try:
+                save_file(file_url, directory, file_name)
+            except Exception as e:
+                print(f"Error! {i:>4}/{amount} - {file_name}: {e}",
+                      file=sys.stderr)
+            else:
+                print(f"{i:>4}/{amount} - {file_name}")
 
 
 def parse_multiple_threads(urls, mode, directory):
