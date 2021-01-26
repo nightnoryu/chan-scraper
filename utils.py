@@ -129,7 +129,7 @@ def parse_thread(url, mode, directory, single=False):
     extractor = select_extractor(url)
     # Check if it's valid
     if extractor is None:
-        print(f"URL '{url}' is not supported.")
+        print(f"URL '{url}' is not supported.", file=sys.stderr)
         return
 
     # Get all the information
