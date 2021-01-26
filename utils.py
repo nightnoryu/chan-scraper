@@ -71,6 +71,7 @@ def select_extractor(url):
         Dvach,
         Fourchan,
     )
+    # Go through the extractors to find the needed one
     for ex in extractors:
         match = ex.match(url)
         if match:
@@ -96,7 +97,7 @@ def download_files(file_list, mode, directory, amount):
 def parse_multiple_threads(urls, mode, directory):
     """Loops through the links & calls parse_thread() on each"""
     for i, url in enumerate(urls, start=1):
-        print(f"\n[{i} out of {len(urls)}]")
+        print(f"\n[{i}/{len(urls)}]")
         parse_thread(url, mode, directory)
 
 
@@ -124,17 +125,14 @@ def parse_thread(url, mode, directory, single=False):
     # Get all the information
     file_list = extractor.get_files_urls_names()
     amount = count_files(file_list, mode)
-
     # Check if there are any files
     if amount == 0:
-        print(f"There are no specified files in this thread: {url}")
+        print(f"There are no specified files in this thread: {extractor.url}")
         return
 
     # Create a separate directory for this thread if there are many
     if not single:
         directory = create_thread_directory(directory, extractor.name,
                                             extractor.thread_number)
-
     # Download the files
-    print("Downloading...")
     download_files(file_list, mode, directory, amount)
