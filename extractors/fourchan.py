@@ -1,3 +1,4 @@
+import re
 import sys
 
 try:
@@ -20,6 +21,17 @@ class Fourchan():
         self.get_thread_json()
         self.get_thread_number()
         self.get_board_name()
+
+    @staticmethod
+    def match(url):
+        pattern = re.compile(r"""https://
+            boards\.4chan(nel)?\.org/
+            \w{1,4}/
+            thread/
+            \d+(/
+            [a-zA-Z0-9\-]+
+            (\#p\d+)?)?/?""", re.X)
+        return pattern.match(url)
 
     def get_thread_json(self):
         """Sets self.thread_json according to self.url"""

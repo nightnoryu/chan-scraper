@@ -1,3 +1,4 @@
+import re
 import sys
 
 try:
@@ -18,6 +19,16 @@ class Dvach():
         self.get_api_url()
         self.get_thread_json()
         self.get_thread_number()
+
+    @staticmethod
+    def match(url):
+        pattern = re.compile(r"""https://
+            2ch\.hk/
+            \w{1,4}/
+            res/
+            \d+\.html
+            (\#\d+)?/?""", re.X)
+        return pattern.match(url)
 
     def get_thread_json(self):
         """Sets self.thread_json according to self.url"""
