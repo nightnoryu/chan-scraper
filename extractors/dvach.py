@@ -32,16 +32,8 @@ class Dvach():
 
     def get_thread_json(self):
         """Sets self.thread_json according to self.url"""
-        # Make a good request
-        try:
-            response = requests.get(self.api_url)
-            response.raise_for_status()
-        except requests.ConnectionError as e:
-            print(f"Connection error: {e}", file=sys.stderr)
-            sys.exit(1)
-        except requests.HTTPError as e:
-            print(f"HTTP error: {e}", file=sys.stderr)
-            sys.exit(1)
+        response = requests.get(self.api_url)
+        response.raise_for_status()
         self.thread_json = response.json()
 
     def get_thread_number(self):

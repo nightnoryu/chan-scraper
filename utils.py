@@ -111,11 +111,15 @@ def parse_thread(url, mode, directory, single=False):
     # Log current thread
     print(f"Parsing '{url}'")
 
-    # Select the extractor
-    extractor = select_extractor(url)
-    # Check if it's valid
-    if extractor is None:
-        print(f"URL '{url}' is not supported.", file=sys.stderr)
+    # Select the extractor and handle request errors
+    try:
+        extractor = select_extractor(url)
+        # Check if it's valid
+        if extractor is None:
+            raise Exception("URL is not supported.")
+    except Exception as e:
+        print(f"Error while selecting extractor for {url}: {e}",
+              file=sys.stderr)
         return
 
     # Get all the information
