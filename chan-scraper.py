@@ -55,7 +55,7 @@ def parse_arguments():
 
     parser.add_argument("-o", "--output", default=".", type=valid_dir)
 
-    parser.add_argument("urls", nargs="*")
+    parser.add_argument("urls", nargs="+")
 
     args = parser.parse_args()
     return args
