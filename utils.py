@@ -67,10 +67,10 @@ def save_file(url, directory, name):
 def select_extractor(url):
     """Returns a corresponding extractor depending on the thread URL"""
     # Modify this to add a new extractor
-    extractors = [
+    extractors = (
         Dvach,
         Fourchan,
-    ]
+    )
     for ex in extractors:
         match = ex.match(url)
         if match:
