@@ -55,9 +55,12 @@ This will download all files from both threads and place them into separate fold
 ## Extending
 If you want to add support for another imageboard, there is a simple scheme for an 'extractor'. It is a class containing the following properties:
 
-- `name` - string representing imageboard's name. For example: `self.name = "fourchan"`;
+- `name` - string representing imageboard's name. For example: `self.name = "fourchan"`. This is used for naming the directories when dowloading multiple threads;
+- `match()` - a **static** method ([docs](https://docs.python.org/3/library/functions.html#staticmethod)) that returns a `re.match` object. Determines which links the extractor supports;
 - `thread_number` - `int` with thread's number according to the URL;
 - `get_files_urls_names()` - function that returns a tuple (or list) of tuples, each containing files' URL and name.
+
+Also make sure to modify the `select_extractor()` function in the utils: import your extractor and add it to the list.
 
 Background implementation is up to you, but I suggest reading the documentation on imageboard's API and use it if possible. Also refer to the existing extractors for more practical info.
 
