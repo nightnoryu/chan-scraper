@@ -132,15 +132,9 @@ def parse_thread(url, mode, directory, single=False):
         print(f"URL '{url}' is not supported.")
         return
 
-    try:
-        # Get all the information
-        file_list = extractor.get_files_urls_names()
-        amount = count_files(file_list, mode)
-    except Exception as ex:
-        # Handle requests exceptions
-        print(f"Request error: {ex}")
-        print(f"Download failed for '{url}'")
-        return
+    # Get all the information
+    file_list = extractor.get_files_urls_names()
+    amount = count_files(file_list, mode)
 
     # Check if there are any files
     if amount == 0:
