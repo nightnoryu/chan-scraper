@@ -60,6 +60,8 @@ If you want to add support for another imageboard, there is a simple scheme for 
 - `thread_number` - `int` with thread's number according to the URL;
 - `get_files_urls_names()` - function that returns a tuple (or list) of tuples, each containing files' URL and name.
 
+The constructor (e.g. `__init__`) **must** trow an error if a network error is encountered. All handling is done in `parse_thread()` in the utils.
+
 Also make sure to modify the `select_extractor()` function in the utils: import your extractor and add it to the list.
 
 Background implementation is up to you, but I suggest reading the documentation on imageboard's API and use it if possible. Also refer to the existing extractors for more practical info.
