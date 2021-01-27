@@ -68,5 +68,5 @@ Background implementation is up to you, but I suggest reading the documentation 
 
 
 ## TODO
-- [x] Pass the thread if it yields an HTTP error and continue to other threads (make it an option ignore-errors?)
+- [x] Pass the thread if it yields an HTTP error and continue to other threads (and files)
 - [ ] Print the full information (summary) at the end of the downloading (make it an option?)
