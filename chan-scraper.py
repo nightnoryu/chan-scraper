@@ -66,22 +66,16 @@ def parse_arguments():
 
 def main():
     """Entry point of the script"""
-    # Get the input arguments
-    args = parse_arguments()
-    mode = args.mode
-    urls = args.urls
-    directory = args.output
-
-    # Parse single thread
-    if len(urls) == 1:
-        utils.parse_thread(urls[0], mode, directory, True)
-    # Parse multiple threads
+    if len(args.urls) == 1:
+        utils.parse_thread(args.urls[0], args.mode, args.output, True)
     else:
-        utils.parse_multiple_threads(urls, mode, directory)
+        utils.parse_multiple_threads(args.urls, args.mode, args.output)
 
 
 # Entry point
 if __name__ == "__main__":
+    args = parse_arguments()
+
     try:
         main()
     except KeyboardInterrupt:
