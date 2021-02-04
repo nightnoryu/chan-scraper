@@ -24,6 +24,7 @@ class Fourchan():
 
     @staticmethod
     def match(url):
+        """Determines which links this module supports"""
         pattern = re.compile(r"""https://
             boards\.4chan(nel)?\.org/
             \w{1,4}/

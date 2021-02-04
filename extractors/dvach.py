@@ -22,6 +22,7 @@ class Dvach():
 
     @staticmethod
     def match(url):
+        """Determines which links this module supports"""
         pattern = re.compile(r"""https://
             2ch\.hk/
             \w{1,4}/

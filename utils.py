@@ -1,6 +1,5 @@
 # This module provides general functions for thread parsing
 import os
-import re
 import sys
 
 try:
@@ -19,31 +18,32 @@ def get_extension(name):
 
 
 def is_image(ext):
-    return (ext == "jpg" or ext == "jpeg" or
-        ext == "png" or ext =="gif")
+    """Returns true if ext is image type"""
+    return ext in ("jpg", "jpeg", "png", "gif")
 
 
 def is_video(ext):
-    return ext == "webm" or ext == "mp4"
+    """Returns true if ext is video type"""
+    return ext in ("webm", "mp4")
 
 
 def count_files(files_list, mode="all"):
     """Returns files amount according to the specified mode"""
-    n = 0
+    count = 0
     for _, file_name in files_list:
         ext = get_extension(file_name)
         if ((mode == "images" and is_image(ext)) or
             (mode == "videos" and is_video(ext)) or
             (mode == "all")):
-            n += 1
-    return n
+            count += 1
+    return count
 
 
 def req_get(url):
     """Makes a proper GET request and returns the response object"""
-    r = requests.get(url)
-    r.raise_for_status()
-    return r
+    response = requests.get(url)
+    response.raise_for_status()
+    return response
 
 
 def save_file(url, directory, name):
@@ -83,8 +83,8 @@ def download_files(file_list, mode, directory, amount):
             # Save the file
             try:
                 save_file(file_url, directory, file_name)
-            except Exception as e:
-                print(f"Error! {i:>4}/{amount} - {file_name}: {e}",
+            except Exception as err:
+                print(f"Error! {i:>4}/{amount} - {file_name}: {err}",
                       file=sys.stderr)
             else:
                 print(f"{i:>4}/{amount} - {file_name}")
@@ -117,8 +117,8 @@ def parse_thread(url, mode, directory, single=False):
         # Check if it's valid
         if extractor is None:
             raise Exception("URL is not supported.")
-    except Exception as e:
-        print(f"Error while selecting extractor for {url}: {e}",
+    except Exception as err:
+        print(f"Error while selecting extractor for {url}: {err}",
               file=sys.stderr)
         return
 
