@@ -1,6 +1,7 @@
 # This module provides general functions for thread parsing
 import os
 import sys
+import time
 
 try:
     import requests
@@ -47,7 +48,8 @@ def req_get(url):
 
 
 def save_file(url, directory, name):
-    """Save a file into the specified directory"""
+    """Save a file into the specified directory
+    Returns False if file already exists, True otherwise"""
     # Check if the image already exists
     full_name = os.path.join(directory, name)
     # Do not replace files
@@ -55,6 +57,8 @@ def save_file(url, directory, name):
         with open(full_name, "wb") as file:
             for chunk in req_get(url):
                 file.write(chunk)
+        return True
+    return False
 
 
 def select_extractor(url):
@@ -72,7 +76,7 @@ def select_extractor(url):
     return None
 
 
-def download_files(file_list, mode, directory, amount):
+def download_files(file_list, mode, directory, amount, pause):
     """Loops through the files in the file_list & downloads them"""
     for i, (file_url, file_name) in enumerate(file_list, start=1):
         ext = get_extension(file_url)
@@ -80,9 +84,11 @@ def download_files(file_list, mode, directory, amount):
         if ((mode == "images" and is_image(ext)) or
             (mode == "videos" and is_video(ext)) or
             (mode == "all")):
-            # Save the file
             try:
-                save_file(file_url, directory, file_name)
+                # Save the file
+                if save_file(file_url, directory, file_name) and pause:
+                    # If pause is True, sleep to prevent server throttling
+                    time.sleep(0.5)
             except Exception as err:
                 print(f"Error! {i:>4}/{amount} - {file_name}: {err}",
                       file=sys.stderr)
@@ -90,11 +96,11 @@ def download_files(file_list, mode, directory, amount):
                 print(f"{i:>4}/{amount} - {file_name}")
 
 
-def parse_multiple_threads(urls, mode, directory):
+def parse_multiple_threads(urls, mode, directory, pause):
     """Loops through the links & calls parse_thread() on each"""
     for i, url in enumerate(urls, start=1):
         print(f"\n[{i}/{len(urls)}]")
-        parse_thread(url, mode, directory)
+        parse_thread(url, mode, directory, pause)
 
 
 def create_thread_directory(directory, name, number):
@@ -106,7 +112,7 @@ def create_thread_directory(directory, name, number):
     return new_dir
 
 
-def parse_thread(url, mode, directory, single=False):
+def parse_thread(url, mode, directory, pause, single=False):
     """Does the job on one thread"""
     # Log current thread
     print(f"Parsing '{url}'")
@@ -135,4 +141,4 @@ def parse_thread(url, mode, directory, single=False):
         directory = create_thread_directory(directory, extractor.name,
                                             extractor.thread_number)
     # Download the files
-    download_files(file_list, mode, directory, amount)
+    download_files(file_list, mode, directory, amount, pause)
