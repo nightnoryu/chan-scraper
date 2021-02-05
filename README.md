@@ -69,4 +69,5 @@ Background implementation is up to you, but I suggest reading the documentation 
 
 ## TODO
 - [x] Pass the thread if it yields an HTTP error and continue to other threads (and files)
+- [x] Option to pause after each download to prevent server throttling
 - [ ] Print the full information (summary) at the end of the downloading (make it an option?)
