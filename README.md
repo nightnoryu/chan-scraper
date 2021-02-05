@@ -29,8 +29,14 @@ URL:
 
 Options:
   -h,  --help     show help
-  -m,  --mode     specify content for downloading (all|images|videos) (def: all)
+  -m,  --mode     specify content for downloading:
+                  all, images, videos (def: all)
+  -p,  --pause    make a pause after each download
+                  useful if the server throttles (def: False)
   -o,  --output   output directory (def: current)
+
+For more information visit:
+https://github.com/m3tro1d/chan-scraper
 ```
 
 For example:
