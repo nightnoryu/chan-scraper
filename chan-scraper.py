@@ -27,6 +27,8 @@ class CustomArgumentParser(argparse.ArgumentParser):
           -h,  --help     show help
           -m,  --mode     specify content for downloading:
                           all, images, videos (def: {self.get_default("mode")})
+          -p,  --pause    make a pause after each download
+                          useful if the server throttles (def: {self.get_default("pause")})
           -o,  --output   output directory (def: current)
 
         For more information visit:
@@ -53,6 +55,8 @@ def parse_arguments():
     parser.add_argument("-m", "--mode", choices=["all", "images", "videos"],
                         default="all")
 
+    parser.add_argument("-p", "--pause", action="store_true")
+
     parser.add_argument("-o", "--output", default=".", type=valid_dir)
 
     parser.add_argument("urls", nargs="+")
@@ -66,9 +70,11 @@ def parse_arguments():
 def main():
     """Entry point of the script"""
     if len(args.urls) == 1:
-        utils.parse_thread(args.urls[0], args.mode, args.output, True)
+        utils.parse_thread(args.urls[0], args.mode,
+                           args.output, args.pause, True)
     else:
-        utils.parse_multiple_threads(args.urls, args.mode, args.output)
+        utils.parse_multiple_threads(args.urls, args.mode,
+                                     args.output, args.pause)
 
 
 # Entry point
