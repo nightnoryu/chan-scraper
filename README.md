@@ -77,3 +77,5 @@ Background implementation is up to you, but I suggest reading the documentation 
 - [x] Pass the thread if it yields an HTTP error and continue to other threads (and files)
 - [x] Option to pause after each download to prevent server throttling
 - [ ] Print the full information (summary) at the end of the downloading (make it an option?)
+- [ ] Add `usercode_auth` optional cookie code for dvach restricted boards (as an input argument)
+- [ ] Use thread's message text for naming the output folders
