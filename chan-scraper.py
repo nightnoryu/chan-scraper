@@ -27,9 +27,9 @@ class CustomArgumentParser(argparse.ArgumentParser):
           -h,  --help     show help
           -m,  --mode     specify content for downloading:
                           all, images, videos (def: {self.get_default("mode")})
+          -o,  --output   output directory (def: current)
           -p,  --pause    make a pause after each download
                           useful if the server throttles (def: {self.get_default("pause")})
-          -o,  --output   output directory (def: current)
 
         For more information visit:
         https://github.com/m3tro1d/chan-scraper
@@ -55,9 +55,9 @@ def parse_arguments():
     parser.add_argument("-m", "--mode", choices=["all", "images", "videos"],
                         default="all")
 
-    parser.add_argument("-p", "--pause", action="store_true")
-
     parser.add_argument("-o", "--output", default=".", type=valid_dir)
+
+    parser.add_argument("-p", "--pause", action="store_true")
 
     parser.add_argument("urls", nargs="+")
 
