@@ -26,6 +26,7 @@ class Scraper:
         self.extractors = (
             Dvach,
             Fourchan,
+            # Add extractors here
         )
 
     def scrap(self):
@@ -38,9 +39,8 @@ class Scraper:
     def scrap_thread(self, url):
         """Scraps the thread according to self params and URL"""
         print(f"Scraping '{url}'")
-        #  Select the extractor
-        #  Get the files' urls and names
-        #  Count files, print a message if there are no files and finish
+        extractor = self.select_extractor(url)
+        #  Count files; if there are none for this mode, print the message and return
         #  Create a separate directory if not single-mode
         #  Download the files
 
@@ -49,3 +49,11 @@ class Scraper:
         for i, url in enumerate(self.urls, start=1):
             print(f"\n[{i}/{self.urls_len}]")
             self.scrap_thread(url)
+
+    def select_extractor(self, url):
+        """Returns the initialized extractor that matches the specified URL"""
+        for ex in self.extractors:
+            match = ex.match(url)
+            if match:
+                return ex(match.group(0))
+        raise Exception("URL is not supported")
