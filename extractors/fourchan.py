@@ -1,6 +1,5 @@
 import re
 import sys
-
 try:
     import requests
 except ImportError:
@@ -8,7 +7,7 @@ except ImportError:
     sys.exit(1)
 
 
-class Fourchan():
+class Fourchan:
     """This extractor supports 4chan threads on https://boards.4chan[nel].org"""
     def __init__(self, url):
         # Basic properties

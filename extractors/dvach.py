@@ -1,6 +1,5 @@
 import re
 import sys
-
 try:
     import requests
 except ImportError:
@@ -8,7 +7,7 @@ except ImportError:
     sys.exit(1)
 
 
-class Dvach():
+class Dvach:
     """This extractor supports dvach threads on https://2ch.hk"""
     def __init__(self, url):
         # Basic properties
