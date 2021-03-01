@@ -5,7 +5,7 @@ import os
 import sys
 from textwrap import dedent
 
-import utils
+from scraper import Scraper
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Classes
@@ -69,12 +69,8 @@ def parse_arguments():
 
 def main():
     """Entry point of the script"""
-    if len(args.urls) == 1:
-        utils.parse_thread(args.urls[0], args.mode,
-                           args.output, args.pause, True)
-    else:
-        utils.parse_multiple_threads(args.urls, args.mode,
-                                     args.output, args.pause)
+    scraper = Scraper(args.urls, args.mode, args.output, args.pause)
+    scraper.scrap()
 
 
 # Entry point
