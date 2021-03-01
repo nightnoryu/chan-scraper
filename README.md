@@ -66,9 +66,9 @@ If you want to add support for another imageboard, there is a simple scheme for 
 - `thread_number` - `int` with thread's number according to the URL;
 - `get_files_urls_names()` - function that returns a tuple (or list) of tuples, each containing files' URL and name.
 
-The constructor (e.g. `__init__`) **must** trow an error if a network error is encountered. All handling is done in `parse_thread()` in the utils.
+The constructor (e.g. `__init__`) **must** trow an error if a network error is encountered. All handling is done in the `Scraper` class.
 
-Also make sure to modify the `select_extractor()` function in the utils: import your extractor and add it to the list.
+Also make sure to modify the `Scraper` constructor: import your extractor and add it to the list `self.extractors`.
 
 Background implementation is up to you, but I suggest reading the documentation on imageboard's API and use it if possible. Also refer to the existing extractors for more practical info.
 
@@ -76,7 +76,7 @@ Background implementation is up to you, but I suggest reading the documentation 
 ## TODO
 - [x] Pass the thread if it yields an HTTP error and continue to other threads (and files)
 - [x] Option to pause after each download to prevent server throttling
-- [ ] **Rewrite the script to make it more modular and easier to maintain and extend**
+- [x] **Rewrite the script to make it more modular and easier to maintain and extend**
 - [ ] Print the full information (summary) at the end of the downloading (make it an option?)
 - [ ] Add `usercode_auth` optional cookie code for dvach restricted boards (as an input argument)
 - [ ] Use thread's message text for naming the output folders
