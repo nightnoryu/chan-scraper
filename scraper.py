@@ -11,18 +11,6 @@ except ImportError:
 from extractors.dvach import Dvach
 from extractors.fourchan import Fourchan
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Constants
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-EXTRACTORS = (
-    Dvach,
-    Fourchan,
-)
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Scraper class
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 class Scraper:
     """The main scraper class"""
@@ -32,21 +20,32 @@ class Scraper:
         self.output = output
         self.pause = pause
 
+        self.urls_len = len(self.urls)
+        self.is_single_mode = self.urls_len == 1
+
+        self.extractors = (
+            Dvach,
+            Fourchan,
+        )
+
     def scrap(self):
         """Fires the scraping according to the URL amount"""
-        if self.is_single_url():
+        if self.is_single_mode:
             self.scrap_thread(self.urls[0])
         else:
             self.scrap_multiple_threads()
 
-    def is_single_url(self):
-        """Checks if only one URL was provided"""
-        return len(self.urls) == 1
-
     def scrap_thread(self, url):
         """Scraps the thread according to self params and URL"""
-        pass
+        print(f"Scraping '{url}'")
+        #  Select the extractor
+        #  Get the files' urls and names
+        #  Count files, print a message if there are no files and finish
+        #  Create a separate directory if not single-mode
+        #  Download the files
 
     def scrap_multiple_threads(self):
         """Batch scraps the threads according to self params"""
-        pass
+        for i, url in enumerate(self.urls, start=1):
+            print(f"\n[{i}/{self.urls_len}]")
+            self.scrap_thread(url)
