@@ -39,7 +39,13 @@ class Scraper:
     def scrap_thread(self, url):
         """Scraps the thread according to self params and URL"""
         print(f"Scraping '{url}'")
-        extractor = self.select_extractor(url)
+        try:
+            extractor = self.select_extractor(url)
+        except Exception as error:
+            print(f"Error while selecting extractor for {url}: {err}",
+                  file=sys.stderr)
+            return
+        #  Get the file list
         #  Count files; if there are none for this mode, print the message and return
         #  Create a separate directory if not single-mode
         #  Download the files
