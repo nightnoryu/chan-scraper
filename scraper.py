@@ -42,15 +42,13 @@ class Scraper:
         try:
             extractor = self.select_extractor(url)
             file_list = extractor.get_files_urls_names()
-            amount = self.count_files(file_list)
-            thread_dir = self.output
-            if not self.is_single_mode:
-                thread_dir = self.create_thread_dir(extractor)
+            file_list = self.filter_files(file_list)
+            amount = self.get_and_check_amount(file_list)
+            thread_dir = self.get_thread_dir(extractor)
             self.download_files(file_list, thread_dir, amount)
         except Exception as error:
-            print(f"Error while parsing {url}: {error}",
-                  file=sys.stderr)
-            return
+            # Intercept thread-level errors
+            print(f"Error while parsing {url}: {error}", file=sys.stderr)
 
     def scrap_multiple_threads(self):
         """Batch scraps the threads according to self params"""
@@ -66,15 +64,16 @@ class Scraper:
                 return ex(match.group(0))
         raise Exception("URL is not supported")
 
-    def count_files(self, file_list):
-        """Counts the files according to the mode and throws an error, if 0"""
-        count = 0
-        for _, file_name in file_list:
-            if self.is_needed_file(file_name):
-                count += 1
-        if count == 0:
+    def filter_files(self, file_list):
+        """Filters the files based on the current mode"""
+        filtered = tuple(filter(lambda f: self.is_needed_file(f[1]), file_list))
+        return filtered
+
+    def get_and_check_amount(self, file_list):
+        """Raises an exception if the list is empty, otherwise returns length"""
+        if not file_list:
             raise Exception("There are no files")
-        return count
+        return len(file_list)
 
     def is_needed_file(self, file_name):
         """Checks if the file is right according to its extension and mode"""
@@ -95,6 +94,13 @@ class Scraper:
         """Returns true if ext is a video type"""
         return ext in ("webm", "mp4")
 
+    def get_thread_dir(self, extractor):
+        """Returns the output directory according to the URL amount"""
+        thread_dir = self.output
+        if not self.is_single_mode:
+            thread_dir = self.create_thread_dir(extractor)
+        return thread_dir
+
     def create_thread_dir(self, extractor):
         """Creates and returns the directory for the particular thread"""
         new_dir = os.path.join(self.output,
@@ -106,9 +112,8 @@ class Scraper:
     def download_files(self, file_list, thread_dir, amount):
         """Downloads the files with the specified parameters"""
         for i, (file_url, file_name) in enumerate(file_list, start=1):
-            if self.is_needed_file(file_name):
-                file_path = os.path.join(thread_dir, file_name)
-                self.handle_and_save(file_url, file_path, i, amount)
+            file_path = os.path.join(thread_dir, file_name)
+            self.handle_and_save(file_url, file_path, i, amount)
 
     def handle_and_save(self, url, name, i, amount):
         """Handles one file saving iteration"""
@@ -117,6 +122,7 @@ class Scraper:
             if self.pause and is_saved:
                 time.sleep(0.5)
         except Exception as error:
+            # Intercept file-level errors and move on
             print(f"{i:>4}/{amount} - ERROR {os.path.basename(name)}: {error}",
                   file=sys.stderr)
         else:
