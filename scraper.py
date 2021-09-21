@@ -103,8 +103,8 @@ class Scraper:
 
     def create_thread_dir(self, extractor):
         """Creates and returns the directory for the particular thread"""
-        new_dir = os.path.join(self.output,
-                               f"{extractor.name}_{extractor.thread_number}")
+        new_dir_name = f"{extractor.name}_{extractor.board_name}_{extractor.thread_number}"
+        new_dir = os.path.join(self.output, new_dir_name)
         if not os.path.isdir(new_dir):
             os.mkdir(new_dir)
         return new_dir
