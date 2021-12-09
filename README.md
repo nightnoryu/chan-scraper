@@ -79,4 +79,5 @@ Background implementation is up to you, but I suggest reading the documentation 
 - [x] **Rewrite the script to make it more modular and easier to maintain and extend**
 - [ ] Print the full information (summary) at the end of the downloading (make it an option?)
 - [ ] Add `usercode_auth` optional cookie code for dvach restricted boards (as an input argument)
-- [ ] Use thread's message text for naming the output folders
+- [ ] Use thread's header text for naming the output folders
+- [ ] Add option for saving with poster's filename
