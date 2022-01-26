@@ -1,5 +1,8 @@
 # Compiled python files
-**/__pycache__
+__pycache__/
 
 # IDE settings
 .idea/
+
+# Virtual environment
+venv/

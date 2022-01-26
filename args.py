@@ -2,12 +2,14 @@ import argparse
 import os
 from textwrap import dedent
 
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Classes
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 class CustomArgumentParser(argparse.ArgumentParser):
     """Override ArgumentParser's help message"""
+
     def format_help(self):
         help_text = dedent(f"""\
         Chan scraper is a script for downloading attachments from one or several
@@ -30,6 +32,7 @@ class CustomArgumentParser(argparse.ArgumentParser):
         https://github.com/m3tro1d/chan-scraper
         """)
         return help_text
+
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Functions
